@@ -1,6 +1,6 @@
 package router
 
-import "akcasbin/server/router/system"
+import "akcasbin/router/system"
 
 type routerGroup struct {
 	System system.RouterGroup

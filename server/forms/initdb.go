@@ -1,7 +1,7 @@
 package forms
 
 import (
-	"akcasbin/server/config"
+	"akcasbin/config"
 	"fmt"
 )
 

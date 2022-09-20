@@ -1,9 +1,9 @@
 package system
 
 import (
-	"akcasbin/server/forms"
-	"akcasbin/server/global"
-	"akcasbin/server/models/response"
+	"akcasbin/forms"
+	"akcasbin/global"
+	"akcasbin/models/response"
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
 )

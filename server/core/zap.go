@@ -1,9 +1,9 @@
 package core
 
 import (
-	"akcasbin/server/core/internal"
-	"akcasbin/server/global"
-	"akcasbin/server/utils"
+	"akcasbin/core/internal"
+	"akcasbin/global"
+	"akcasbin/utils"
 	"fmt"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"

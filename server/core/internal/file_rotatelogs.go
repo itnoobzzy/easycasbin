@@ -1,7 +1,7 @@
 package internal
 
 import (
-	"akcasbin/server/global"
+	"akcasbin/global"
 	rotatelogs "github.com/lestrrat-go/file-rotatelogs"
 	"go.uber.org/zap/zapcore"
 	"os"

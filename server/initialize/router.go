@@ -1,8 +1,8 @@
 package initialize
 
 import (
-	"akcasbin/server/global"
-	"akcasbin/server/router"
+	"akcasbin/global"
+	"akcasbin/router"
 	"github.com/gin-gonic/gin"
 )
 

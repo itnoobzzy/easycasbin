@@ -1,7 +1,7 @@
 package system
 
 import (
-	v1 "akcasbin/server/api/v1"
+	v1 "akcasbin/api/v1"
 	"github.com/gin-gonic/gin"
 )
 

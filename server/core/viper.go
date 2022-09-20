@@ -1,8 +1,8 @@
 package core
 
 import (
-	"akcasbin/server/core/internal"
-	"akcasbin/server/global"
+	"akcasbin/core/internal"
+	"akcasbin/global"
 	"flag"
 	"fmt"
 	"github.com/fsnotify/fsnotify"

@@ -1,6 +1,6 @@
 package service
 
-import "akcasbin/server/service/system"
+import "akcasbin/service/system"
 
 type ServiceGroup struct {
 	SystemServiceGroup system.ServiceGroup

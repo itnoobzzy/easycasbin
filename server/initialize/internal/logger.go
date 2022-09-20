@@ -1,7 +1,7 @@
 package internal
 
 import (
-	"akcasbin/server/global"
+	"akcasbin/global"
 	"fmt"
 	"gorm.io/gorm/logger"
 )

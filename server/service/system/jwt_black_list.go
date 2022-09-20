@@ -1,8 +1,8 @@
 package system
 
 import (
-	"akcasbin/server/global"
-	"akcasbin/server/models"
+	"akcasbin/global"
+	"akcasbin/models"
 	"context"
 	"go.uber.org/zap"
 	"time"

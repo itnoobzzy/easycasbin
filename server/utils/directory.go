@@ -1,7 +1,7 @@
 package utils
 
 import (
-	"akcasbin/server/global"
+	"akcasbin/global"
 	"errors"
 	"go.uber.org/zap"
 	"os"

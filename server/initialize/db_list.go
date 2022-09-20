@@ -1,8 +1,8 @@
 package initialize
 
 import (
-	"akcasbin/server/config"
-	"akcasbin/server/global"
+	"akcasbin/config"
+	"akcasbin/global"
 	"gorm.io/gorm"
 )
 

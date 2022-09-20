@@ -1,10 +1,10 @@
 package system
 
 import (
-	"akcasbin/server/config"
-	"akcasbin/server/forms"
-	"akcasbin/server/global"
-	"akcasbin/server/utils"
+	"akcasbin/config"
+	"akcasbin/forms"
+	"akcasbin/global"
+	"akcasbin/utils"
 	"context"
 	"errors"
 	"fmt"

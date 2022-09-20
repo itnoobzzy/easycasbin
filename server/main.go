@@ -1,9 +1,9 @@
 package main
 
 import (
-	"akcasbin/server/core"
-	"akcasbin/server/global"
-	"akcasbin/server/initialize"
+	"akcasbin/core"
+	"akcasbin/global"
+	"akcasbin/initialize"
 	_ "github.com/go-sql-driver/mysql"
 	"go.uber.org/zap"
 )

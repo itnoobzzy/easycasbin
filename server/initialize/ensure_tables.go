@@ -1,8 +1,8 @@
 package initialize
 
 import (
-	"akcasbin/server/models"
-	"akcasbin/server/service/system"
+	"akcasbin/models"
+	"akcasbin/service/system"
 	"context"
 	"gorm.io/gorm"
 )

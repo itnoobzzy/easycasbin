@@ -1,9 +1,9 @@
 package initialize
 
 import (
-	"akcasbin/server/config"
-	"akcasbin/server/global"
-	"akcasbin/server/initialize/internal"
+	"akcasbin/config"
+	"akcasbin/global"
+	"akcasbin/initialize/internal"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )

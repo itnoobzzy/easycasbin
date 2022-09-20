@@ -1,7 +1,7 @@
 package internal
 
 import (
-	"akcasbin/server/global"
+	"akcasbin/global"
 	"fmt"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"

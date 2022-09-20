@@ -1,6 +1,6 @@
 package models
 
-import "akcasbin/server/global"
+import "akcasbin/global"
 
 type JwtBlackList struct {
 	global.BASE_MODEL

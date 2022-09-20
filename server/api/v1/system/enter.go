@@ -1,6 +1,6 @@
 package system
 
-import "akcasbin/server/service"
+import "akcasbin/service"
 
 type SysApiGroup struct {
 	DBApi

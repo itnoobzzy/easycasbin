@@ -1,8 +1,8 @@
 package initialize
 
 import (
-	"akcasbin/server/global"
-	"akcasbin/server/models"
+	"akcasbin/global"
+	"akcasbin/models"
 	"go.uber.org/zap"
 	"gorm.io/gorm"
 	"os"

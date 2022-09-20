@@ -1,8 +1,8 @@
 package system
 
 import (
-	"akcasbin/server/forms"
-	"akcasbin/server/global"
+	"akcasbin/forms"
+	"akcasbin/global"
 	"context"
 	"database/sql"
 	"errors"

@@ -1,9 +1,9 @@
 package core
 
 import (
-	"akcasbin/server/global"
-	"akcasbin/server/initialize"
-	"akcasbin/server/service/system"
+	"akcasbin/global"
+	"akcasbin/initialize"
+	"akcasbin/service/system"
 	"fmt"
 	"go.uber.org/zap"
 	"time"

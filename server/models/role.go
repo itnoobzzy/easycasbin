@@ -1,7 +1,7 @@
 package models
 
 import (
-	"akcasbin/server/global"
+	"akcasbin/global"
 )
 
 type Role struct {

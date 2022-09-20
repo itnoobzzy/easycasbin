@@ -1,7 +1,7 @@
 package initialize
 
 import (
-	"akcasbin/server/global"
+	"akcasbin/global"
 	"context"
 	"github.com/go-redis/redis/v8"
 	"go.uber.org/zap"
