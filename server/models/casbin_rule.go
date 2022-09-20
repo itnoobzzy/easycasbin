@@ -1,7 +1,7 @@
 package models
 
 import (
-	"akcasbin/global"
+	"akcasbin/server/global"
 )
 
 type CasbinRule struct {

@@ -14,7 +14,10 @@ import (
 func Zap() (logger *zap.Logger) {
 	if ok, _ := utils.PathExists(global.CASBIN_CONFIG.Zap.Director); !ok {
 		fmt.Printf("create %v directory\n", global.CASBIN_CONFIG.Zap.Director)
-		_ = os.Mkdir(global.CASBIN_CONFIG.Zap.Director, os.ModePerm)
+		err := os.Mkdir(global.CASBIN_CONFIG.Zap.Director, os.ModePerm)
+		if err != nil {
+			panic(err)
+		}
 	}
 
 	cores := internal.Zap.GetZapCores()

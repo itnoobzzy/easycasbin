@@ -1,0 +1,130 @@
+aliyun-oss:
+    endpoint: yourEndpoint
+    access-key-id: yourAccessKeyId
+    access-key-secret: yourAccessKeySecret
+    bucket-name: yourBucketName
+    bucket-url: yourBucketUrl
+    base-path: yourBasePath
+aws-s3:
+    bucket: xxxxx-10005608
+    region: ap-shanghai
+    endpoint: ""
+    s3-force-path-style: false
+    disable-ssl: false
+    secret-id: xxxxxxxx
+    secret-key: xxxxxxxx
+    base-url: https://gin.vue.admin
+    path-prefix: github.com/flipped-aurora/gin-vue-admin/server
+captcha:
+    img-height: 80
+    img-width: 240
+    key-long: 6
+cors:
+    mode: whitelist
+    whitelist:
+        - allow-origin: example1.com
+          allow-methods: GET, POST
+          allow-headers: content-type
+          expose-headers: Content-Length, Access-Control-Allow-Origin, Access-Control-Allow-Headers, Content-Type
+          allow-credentials: true
+        - allow-origin: example2.com
+          allow-methods: GET, POST
+          allow-headers: content-type
+          expose-headers: Content-Length, Access-Control-Allow-Origin, Access-Control-Allow-Headers, Content-Type
+          allow-credentials: true
+db-list:
+    - disable: false
+      type: ""
+      alias-name: ""
+      path: ""
+      port: ""
+      config: ""
+      db-name: ""
+      username: ""
+      password: ""
+      max-idle-conns: 10
+      max-open-conns: 100
+      log-mode: ""
+      log-zap: false
+email:
+    from: xxx@163.com
+    host: smtp.163.com
+    is-ssl: true
+    nickname: test
+    port: 465
+    secret: xxx
+    to: xxx@qq.com
+hua-wei-obs:
+    path: you-path
+    bucket: you-bucket
+    endpoint: you-endpoint
+    access-key: you-access-key
+    secret-key: you-secret-key
+jwt:
+    signing-key: d5cfc646-3692-4c98-98b3-ca7b8553d289
+    expires-time: 604800
+    buffer-time: 86400
+    issuer: qmPlus
+local:
+    path: ""
+    store-path: ""
+mysql:
+    path: rm-3nsc58907o3epw2me.mysql.rds.aliyuncs.com
+    port: "3306"
+    config: charset=utf8mb4&parseTime=True&loc=Local
+    db-name: easycasbin
+    username: dbadmin
+    password: hE4sqSfuCQeXEXwz
+    max-idle-conns: 10
+    max-open-conns: 100
+    log-mode: error
+    log-zap: false
+pgsql:
+    path: ""
+    port: ""
+    config: ""
+    db-name: ""
+    username: ""
+    password: ""
+    max-idle-conns: 10
+    max-open-conns: 100
+    log-mode: ""
+    log-zap: false
+qiniu:
+    zone: ZoneHuaDong
+    bucket: ""
+    img-path: ""
+    use-https: false
+    access-key: ""
+    secret-key: ""
+    use-cdn-domains: false
+redis:
+    db: 4
+    addr: r-3ns20c32d1acd834.redis.rds.aliyuncs.com:6379
+    password: IyY1NA3Zre76542M
+system:
+    env: public
+    addr: 8888
+    db-type: mysql
+    oss-type: local
+    use-multipoint: false
+    use-redis: true
+    iplimit-count: 15000
+    iplimit-time: 3600
+tencent-cos:
+    bucket: xxxxx-10005608
+    region: ap-shanghai
+    secret-id: xxxxxxxx
+    secret-key: xxxxxxxx
+    base-url: https://gin.vue.admin
+    path-prefix: github.com/flipped-aurora/gin-vue-admin/server
+zap:
+    level: info
+    prefix: '[easyCasbin]'
+    format: console
+    director: log
+    encode-level: LowercaseColorLevelEncoder
+    stacktrace-key: stacktrace
+    max-age: 30
+    show-line: true
+    log-in-console: true
