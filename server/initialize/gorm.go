@@ -26,6 +26,7 @@ func RegisterTables(db *gorm.DB) {
 		models.CasbinRule{},
 		models.Role{},
 		models.User{},
+		models.JwtBlackList{},
 	)
 	if err != nil {
 		global.CASBIN_LOG.Error("register table failed", zap.Error(err))

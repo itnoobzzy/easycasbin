@@ -18,6 +18,7 @@ func Routers() *gin.Engine {
 	}
 	{
 		systemRouter.InitInitRouter(PublicGroup)
+		systemRouter.InitUserRouter(PublicGroup)
 	}
 
 	global.CASBIN_LOG.Info("router register success")
