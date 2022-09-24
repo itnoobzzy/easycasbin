@@ -2,6 +2,7 @@ package global
 
 import (
 	"akcasbin/config"
+	"github.com/casbin/casbin/v2"
 	"github.com/go-redis/redis/v8"
 	"github.com/songzhibin97/gkit/cache/local_cache"
 	"github.com/songzhibin97/gkit/cache/singleflight"
@@ -21,4 +22,7 @@ var (
 	CASBIN_CONCURRENCY_CONTROL = &singleflight.Group{}
 
 	BlackCache local_cache.Cache
+
+	// casbin enforcer
+	CASBIN_ENFORCER *casbin.CachedEnforcer
 )

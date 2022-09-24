@@ -13,6 +13,7 @@ func main() {
 	global.CASBIN_LOG = core.Zap()
 	zap.ReplaceGlobals(global.CASBIN_LOG)
 	global.CASBIN_DB = initialize.Gorm()
+	global.CASBIN_ENFORCER = core.Enforcer()
 	initialize.DBList()
 	if global.CASBIN_DB != nil {
 		initialize.RegisterTables(global.CASBIN_DB)

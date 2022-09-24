@@ -18,6 +18,7 @@ func (ua *UserApi) Login(c *gin.Context) {
 	var loginForm forms.Login
 	if err := c.ShouldBindJSON(&loginForm); err != nil {
 		response.FailWithMessage(err.Error(), c)
+		return
 	}
 	if err := utils.Verify(loginForm, utils.LoginVerify); err != nil {
 		response.FailWithMessage(err.Error(), c)
