@@ -12,7 +12,9 @@ func (s *CasbinRouter) InitCasbinRouter(Router *gin.RouterGroup) (R gin.IRouter)
 	casbinApi := v1.ApiGroupApp.SystemApiGroup.CasbinApi
 	{
 		casbinRouter.GET("all_subjects", casbinApi.GetAllSubjects)
+		casbinRouter.GET("all_domains", casbinApi.GetAllDomains)
 		casbinRouter.POST("add_domain_role", casbinApi.AddRoleForUserInDomain)
+		casbinRouter.POST("add_policy", casbinApi.AddPolicy)
 	}
 	return casbinRouter
 }

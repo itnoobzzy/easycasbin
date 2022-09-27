@@ -1,11 +1,11 @@
 package models
 
 import (
-	"akcasbin/global"
+	"gorm.io/gorm"
 )
 
 type CasbinRule struct {
-	global.BASE_MODEL
+	gorm.Model
 	ID    uint   `gorm:"primaryKey;autoIncrement"`
 	Ptype string `json:"ptype" gorm:"size:100"`
 	V0    string `json:"v0" gorm:"size:100"`

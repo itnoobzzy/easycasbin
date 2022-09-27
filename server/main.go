@@ -15,6 +15,11 @@ func main() {
 	global.CASBIN_DB = initialize.Gorm()
 	global.CASBIN_ENFORCER = core.Enforcer()
 	initialize.DBList()
+	// 初始化表单校验翻译器
+	err := initialize.InitTrans("zh")
+	if err != nil {
+		panic(err)
+	}
 	if global.CASBIN_DB != nil {
 		initialize.RegisterTables(global.CASBIN_DB)
 		db, _ := global.CASBIN_DB.DB()

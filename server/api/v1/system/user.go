@@ -17,7 +17,7 @@ type UserApi struct{}
 func (ua *UserApi) Login(c *gin.Context) {
 	var loginForm forms.Login
 	if err := c.ShouldBindJSON(&loginForm); err != nil {
-		response.FailWithMessage(err.Error(), c)
+		response.FailWithMessage(err, c)
 		return
 	}
 	if err := utils.Verify(loginForm, utils.LoginVerify); err != nil {
@@ -100,7 +100,7 @@ func (ua *UserApi) TokenNext(c *gin.Context, user models.User) {
 func (ua *UserApi) Register(c *gin.Context) {
 	var registerForm forms.Register
 	if err := c.ShouldBindJSON(&registerForm); err != nil {
-		response.FailWithMessage(err.Error(), c)
+		response.FailWithMessage(err, c)
 		return
 	}
 	user := &models.User{

@@ -1,8 +1,10 @@
 package models
 
-import "akcasbin/global"
+import (
+	"gorm.io/gorm"
+)
 
 type JwtBlackList struct {
-	global.BASE_MODEL
+	gorm.Model
 	Jwt string `gorm:"type:text;comment:jwt"`
 }

@@ -2,11 +2,12 @@ package models
 
 import (
 	"akcasbin/global"
+	"gorm.io/gorm"
 	"time"
 )
 
 type User struct {
-	global.BASE_MODEL
+	gorm.Model
 	FirstName      string      `json:"first_name" gorm:"type:text"`
 	LastName       string      `json:"last_name" gorm:"type:text"`
 	Username       string      `json:"username" gorm:"type:text"`
