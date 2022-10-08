@@ -14,7 +14,8 @@ func (s *CasbinRouter) InitCasbinRouter(Router *gin.RouterGroup) (R gin.IRouter)
 		casbinRouter.GET("all_subjects", casbinApi.GetAllSubjects)
 		casbinRouter.GET("all_domains", casbinApi.GetAllDomains)
 		casbinRouter.POST("add_domain_role", casbinApi.AddRoleForUserInDomain)
-		casbinRouter.POST("add_policy", casbinApi.AddPolicy)
+		casbinRouter.POST("batch_add_policy", casbinApi.AddPolicy)
+		casbinRouter.POST("batch_enforce_policy", casbinApi.BatchEnforce)
 	}
 	return casbinRouter
 }

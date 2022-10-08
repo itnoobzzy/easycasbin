@@ -35,7 +35,7 @@ func (cas *CasbinApi) AddRoleForUserInDomain(c *gin.Context) {
 	response.Ok(c)
 }
 
-// AddPolicy 添加ACL权限
+// AddPolicy 添加权限
 func (cas *CasbinApi) AddPolicy(c *gin.Context) {
 	var addPolicyForm forms.AddPolicy
 	if err := c.ShouldBindJSON(&addPolicyForm); err != nil {
@@ -48,4 +48,19 @@ func (cas *CasbinApi) AddPolicy(c *gin.Context) {
 		return
 	}
 	response.Ok(c)
+}
+
+// BatchEnforce 批量校验权限，当有一条不通过时校验就不通过
+func (cas *CasbinApi) BatchEnforce(c *gin.Context) {
+	var batchEnforceForm forms.BatchEnforce
+	if err := c.ShouldBindJSON(&batchEnforceForm); err != nil {
+		response.FailWithMessage(err, c)
+		return
+	}
+	results, err := casbinService.BatchEnforce(&batchEnforceForm)
+	if err != nil {
+		response.FailWithMessage(err.Error(), c)
+		return
+	}
+	response.OkWithDetailed(results, "ok", c)
 }

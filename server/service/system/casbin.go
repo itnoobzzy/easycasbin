@@ -41,10 +41,40 @@ func (casbinService *CasbinService) GetAllDomains() (domains []string, err error
 	return domains, nil
 }
 
-// AddPolicy 添加ACL权限
+// AddPolicy 添加权限
 func (casbinService *CasbinService) AddPolicy(form *forms.AddPolicy) error {
-	if _, err := global.CASBIN_ENFORCER.AddPolicy(form.Name, form.Resource, form.Access); err != nil {
-		return errors.New("添加ACL权限失败!")
+	var rules [][]string
+	for _, v := range form.Policies {
+		rule := make([]string, 0)
+		// 默认添加至default 域，并且添加的权限是生效的
+		if v.Domain == "" {
+			v.Domain = "default"
+		}
+		if v.Eft == "" {
+			v.Eft = "allow"
+		}
+		rule = append(rule, v.Name, v.Domain, v.Resource, v.Action, v.Eft)
+		rules = append(rules, rule)
 	}
+	_, err := global.CASBIN_ENFORCER.AddPolicies(rules)
+	if err != nil {
+		return err
+	}
+
 	return nil
+}
+
+// BatchEnforce 批量校验权限
+func (casbinService *CasbinService) BatchEnforce(form *forms.BatchEnforce) (results []bool, err error) {
+	var rules [][]interface{}
+	for _, v := range form.Policies {
+		rule := make([]interface{}, 0)
+		rule = append(rule, v.Name, v.Domain, v.Resource, v.Action)
+		rules = append(rules, rule)
+	}
+	results, err = global.CASBIN_ENFORCER.BatchEnforce(rules)
+	if err != nil {
+		return nil, err
+	}
+	return results, nil
 }
