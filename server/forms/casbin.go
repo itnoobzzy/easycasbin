@@ -7,12 +7,6 @@ type AddRoleForUserInDomain struct {
 	Role     string `form:"role" json:"role" binding:"required"`
 }
 
-// AddDomainRole 添加域角色
-type AddDomainRole struct {
-	Name   string `form:"name" json:"name" binding:"required"`
-	Domain string `form:"domain" json:"domain" binding:"required"`
-}
-
 // policy 单个权限
 type policy struct {
 	Name     string `form:"name" json:"name" binding:"required"`
