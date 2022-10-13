@@ -1,7 +1,10 @@
 package utils
 
 import (
+	"akcasbin/forms"
 	"errors"
+	"fmt"
+	"github.com/go-playground/validator/v10"
 	"reflect"
 	"regexp"
 	"strconv"
@@ -194,4 +197,19 @@ func compare(value interface{}, VerifyStr string) bool {
 // 正则匹配
 func regexpMatch(rule, matchStr string) bool {
 	return regexp.MustCompile(rule).MatchString(matchStr)
+}
+
+// FormatCheck 自定义 form binding 校验 参数格式
+func FormatCheck(fl validator.FieldLevel) bool {
+	value := fl.Field().String()
+	ok, _ := regexp.MatchString(`^(.*):(.*)$`, value)
+	if !ok {
+		return false
+	}
+	return true
+}
+
+func SLFormatCheck(sl validator.StructLevel) {
+	st := sl.Current().Interface().(forms.BatchEnforce)
+	fmt.Println(st)
 }

@@ -6,6 +6,7 @@ import (
 	"akcasbin/models"
 	"errors"
 	"fmt"
+	"strings"
 )
 
 type CasbinService struct{}
@@ -18,15 +19,32 @@ func (casbinService *CasbinService) GetAllSubjects() interface{} {
 
 // AddRoleForUserInDomain 为用户添加域角色
 func (casbinService *CasbinService) AddRoleForUserInDomain(form *forms.AddRoleForUserInDomain) error {
-	var role models.Role
-	err := global.CASBIN_DB.Where("name = ? and domain = ?", form.Role, form.Domain).First(&role).Error
+	var (
+		role models.Role
+		user models.User
+	)
+
+	err := global.CASBIN_DB.Where("name = ? and domain = ?",
+		strings.Split(form.Role, ":")[1], strings.Split(form.Domain, ":")[1]).First(&role).Error
 	if err != nil {
-		return errors.New("请确保该域有该角色！")
+		return errors.New("该角色不存在！")
 	}
+
+	err = global.CASBIN_DB.Where("username = ?", strings.Split(form.Username, ":")[1]).First(&user).Error
+	if err != nil {
+		return errors.New("该用户不存在！")
+	}
+
 	if _, err = global.CASBIN_ENFORCER.AddRoleForUserInDomain(form.Username, form.Role, form.Domain); err != nil {
 		return errors.New("添加域角色失败！")
 	}
 	return nil
+}
+
+// GetRolesForUserInDomain 查询用户在域上的角色
+func (casbinService *CasbinService) GetRolesForUserInDomain(form *forms.UserInDomain) (roles []string) {
+	res := global.CASBIN_ENFORCER.GetRolesForUserInDomain(form.Username, form.Domain)
+	return res
 }
 
 // GetAllDomains 获取所有域

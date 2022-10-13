@@ -19,8 +19,9 @@ func (rs *RoleService) AddRole(form *forms.AddDomainRole) (role models.Role, err
 	return role, nil
 }
 
-func (rs *RoleService) GetDomainRoles(form *forms.GetAllRoles) (roles []string) {
+// GetDomainRoles 获取指定域下所有角色
+func (rs *RoleService) GetDomainRoles(form *forms.GetAllRoles) (roles []models.Role) {
 	domain := form.Domain
-	global.CASBIN_DB.Table("role").Select("name").Where("domain = ?", domain).Find(&roles)
+	global.CASBIN_DB.Table("role").Where("domain = ?", domain).Find(&roles)
 	return roles
 }

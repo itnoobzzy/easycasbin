@@ -3,6 +3,7 @@ package system
 import (
 	"akcasbin/forms"
 	"akcasbin/models/response"
+	"akcasbin/utils"
 	"github.com/gin-gonic/gin"
 )
 
@@ -63,4 +64,19 @@ func (cas *CasbinApi) BatchEnforce(c *gin.Context) {
 		return
 	}
 	response.OkWithDetailed(results, "ok", c)
+}
+
+// GetRolesForUserInDomain 查询用户在域上的所有角色
+func (cas *CasbinApi) GetRolesForUserInDomain(c *gin.Context) {
+	var userDomainForm forms.UserInDomain
+	if err := c.ShouldBind(&userDomainForm); err != nil {
+		response.FailWithMessage(err, c)
+		return
+	}
+	if err := utils.Verify(userDomainForm, utils.LoginVerify); err != nil {
+		response.FailWithMessage(err.Error(), c)
+		return
+	}
+	results := casbinService.GetRolesForUserInDomain(&userDomainForm)
+	response.OkWithData(results, c)
 }

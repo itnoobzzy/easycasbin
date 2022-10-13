@@ -1,11 +1,12 @@
 package main
 
 import (
+	_ "github.com/go-sql-driver/mysql"
+	"go.uber.org/zap"
+
 	"akcasbin/core"
 	"akcasbin/global"
 	"akcasbin/initialize"
-	_ "github.com/go-sql-driver/mysql"
-	"go.uber.org/zap"
 )
 
 func main() {
