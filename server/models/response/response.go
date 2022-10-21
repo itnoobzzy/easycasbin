@@ -36,15 +36,11 @@ func OkWithMessage(message string, c *gin.Context) {
 }
 
 func OkWithData(data interface{}, c *gin.Context) {
-	Result(SUCCESS, data, "查询成功", c)
+	Result(SUCCESS, data, "操作成功", c)
 }
 
 func OkWithDetailed(data interface{}, message string, c *gin.Context) {
 	Result(SUCCESS, data, message, c)
-}
-
-func Fail(c *gin.Context) {
-	Result(ERROR, map[string]interface{}{}, "操作失败", c)
 }
 
 func removeTopStruct(fields map[string]string) map[string]string {

@@ -1,9 +1,7 @@
 package utils
 
 import (
-	"akcasbin/forms"
 	"errors"
-	"fmt"
 	"github.com/go-playground/validator/v10"
 	"reflect"
 	"regexp"
@@ -31,10 +29,6 @@ func RegisterRule(key string, rule Rules) (err error) {
 
 func NotEmpty() string {
 	return "notEmpty"
-}
-
-func Ge(mark string) string {
-	return "ge=" + mark
 }
 
 // Verify 自定义规则校验函数
@@ -209,7 +203,12 @@ func FormatCheck(fl validator.FieldLevel) bool {
 	return true
 }
 
-func SLFormatCheck(sl validator.StructLevel) {
-	st := sl.Current().Interface().(forms.BatchEnforce)
-	fmt.Println(st)
+// Default 获取对应字段默认值
+func Default(fl validator.FieldLevel) bool {
+	value := fl.Field().String()
+	ok, _ := regexp.MatchString(`^(.*):(.*)$`, value)
+	if !ok {
+		return false
+	}
+	return true
 }

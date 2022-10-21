@@ -50,10 +50,10 @@ func RegisterValidatorFunc(v *validator.Validate, tag string, msgStr string, fn 
 	return
 }
 
-//func RegisterSLValidatorFunc(v *validator.Validate, tag string, msgStr string, fn Func) {
-//
-//	v.RegisterStructValidation()
-//}
+func SetDefault(v *validator.Validate, tag string, fn Func) {
+	_ = v.RegisterValidation(tag, validator.Func(fn))
+	return
+}
 
 func InitTrans(locale string) (err error) {
 	// 修改gin框架中的validator 引擎属性，实现定制
@@ -84,7 +84,7 @@ func InitTrans(locale string) (err error) {
 			_ = en_translations.RegisterDefaultTranslations(v, global.FORM_TRANS)
 		}
 		RegisterValidatorFunc(v, "my_format_check", "参数格式错误eg：`username:zhouzy1`", utils.FormatCheck)
-		//v.RegisterStructValidation(utils.SLFormatCheck, forms.BatchEnforce{})
+		SetDefault(v, "my_default", utils.Default)
 		return
 	}
 	return

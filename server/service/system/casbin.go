@@ -6,6 +6,7 @@ import (
 	"akcasbin/models"
 	"errors"
 	"fmt"
+	"gorm.io/gorm/clause"
 	"strings"
 )
 
@@ -57,6 +58,16 @@ func (casbinService *CasbinService) GetAllDomains() (domains []string, err error
 		domains = append(domains, role.Domain)
 	}
 	return domains, nil
+}
+
+// AddDomain 添加域
+func (casbinService *CasbinService) AddDomain(form *forms.AddDomain) (role models.Role, err error) {
+	role.Domain = form.DomainName
+	role.Name = form.RoleName
+	if err = global.CASBIN_DB.Clauses(clause.OnConflict{DoNothing: true}).Create(&role).Error; err != nil {
+		return models.Role{}, err
+	}
+	return role, nil
 }
 
 // AddPolicy 添加权限

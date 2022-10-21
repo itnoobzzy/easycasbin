@@ -21,6 +21,22 @@ func (cas *CasbinApi) GetAllDomains(c *gin.Context) {
 	response.OkWithData(res, c)
 }
 
+// AddDomain 添加域
+func (cas *CasbinApi) AddDomain(c *gin.Context) {
+	var addDomainForm forms.AddDomain
+	if err := c.ShouldBindJSON(&addDomainForm); err != nil {
+		response.FailWithMessage(err, c)
+		return
+	}
+	utils.SetDefault(&addDomainForm)
+	role, err := casbinService.AddDomain(&addDomainForm)
+	if err != nil {
+		response.FailWithMessage(err.Error(), c)
+		return
+	}
+	response.OkWithData(role, c)
+}
+
 // AddRoleForUserInDomain 赋予用户域角色
 func (cas *CasbinApi) AddRoleForUserInDomain(c *gin.Context) {
 	var addRoleForm forms.AddRoleForUserInDomain

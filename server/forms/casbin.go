@@ -1,5 +1,10 @@
 package forms
 
+type AddDomain struct {
+	DomainName string `form:"domain_name" json:"domain_name" binding:"required"`
+	RoleName   string `form:"role_name" json:"role_name" default:"default"`
+}
+
 // AddRoleForUserInDomain 赋予用户对应域角色
 type AddRoleForUserInDomain struct {
 	Username string `form:"username" json:"username" binding:"required,my_format_check"`
