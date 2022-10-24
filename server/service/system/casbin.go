@@ -70,6 +70,18 @@ func (casbinService *CasbinService) AddDomain(form *forms.AddDomain) (role model
 	return role, nil
 }
 
+// DeleteDomain 删除域
+func (casbinService *CasbinService) DeleteDomain(form *forms.DeleteDomain) (err error) {
+	var role models.Role
+	global.CASBIN_DB.Where("domain=?", form.DomainName).Delete(&role)
+	domain := "domain:" + form.DomainName
+	_, err = global.CASBIN_ENFORCER.DeleteDomains(domain)
+	if err != nil {
+		return err
+	}
+	return
+}
+
 // AddPolicy 添加权限
 func (casbinService *CasbinService) AddPolicy(form *forms.AddPolicy) error {
 	var rules [][]string

@@ -6,8 +6,8 @@ import (
 
 type Role struct {
 	gorm.Model
-	Name   string `json:"name" gorm:"not null;size:64;uniqueIndex:idx_domain_role"`
-	Domain string `json:"domain" gorm:"size:127;uniqueIndex:idx_domain_role,unique"`
+	Name   string `json:"name" gorm:"not null;size:64"`
+	Domain string `json:"domain" gorm:"size:127"`
 }
 
 func (Role) TableName() string {
