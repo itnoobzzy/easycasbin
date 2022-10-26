@@ -52,21 +52,6 @@ func (cas *CasbinApi) DeleteDomain(c *gin.Context) {
 	response.Ok(c)
 }
 
-// AddRoleForUserInDomain 赋予用户域角色
-func (cas *CasbinApi) AddRoleForUserInDomain(c *gin.Context) {
-	var addRoleForm forms.AddRoleForUserInDomain
-	if err := c.ShouldBindJSON(&addRoleForm); err != nil {
-		response.FailWithMessage(err, c)
-		return
-	}
-	err := casbinService.AddRoleForUserInDomain(&addRoleForm)
-	if err != nil {
-		response.FailWithMessage(err.Error(), c)
-		return
-	}
-	response.Ok(c)
-}
-
 // AddPolicy 添加权限
 func (cas *CasbinApi) AddPolicy(c *gin.Context) {
 	var addPolicyForm forms.AddPolicy

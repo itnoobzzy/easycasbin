@@ -1,9 +1,9 @@
 package forms
 
-// AddDomainRole 添加域角色
-type AddDomainRole struct {
-	Name   string `form:"name" json:"name" binding:"required"`
-	Domain string `form:"domain" json:"domain" binding:"required"`
+// DomainRole 添加域角色
+type DomainRole struct {
+	DomainName string `form:"domain_name" json:"domain_name" binding:"required"`
+	RoleName   string `form:"role_name" json:"role_name" binding:"required"`
 }
 
 // DeleteDomainRole 删除对应域的角色

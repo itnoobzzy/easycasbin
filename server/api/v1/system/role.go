@@ -10,7 +10,7 @@ type RoleApi struct{}
 
 // AddDomainRole 添加对应域的角色
 func (ra *RoleApi) AddDomainRole(c *gin.Context) {
-	var addDomainRoleForm forms.AddDomainRole
+	var addDomainRoleForm forms.DomainRole
 	if err := c.ShouldBindJSON(&addDomainRoleForm); err != nil {
 		response.FailWithMessage(err, c)
 		return
@@ -62,4 +62,30 @@ func (ra *RoleApi) GetAllRoles(c *gin.Context) {
 	}
 	roles := roleService.GetDomainRoles(&getDomainRolesForm)
 	response.OkWithDetailed(roles, "ok", c)
+}
+
+// GetDomainSubsForRole 查询角色下所有用户
+func (ra *RoleApi) GetDomainSubsForRole(c *gin.Context) {
+	var form forms.DomainRole
+	if err := c.ShouldBind(&form); err != nil {
+		response.FailWithMessage(err, c)
+		return
+	}
+	users := roleService.GetDomainSubsForRole(&form)
+	response.OkWithData(users, c)
+}
+
+// AddRoleForSubInDomain 赋予用户或角色域角色
+func (ra *RoleApi) AddRoleForSubInDomain(c *gin.Context) {
+	var addRoleForm forms.AddRoleForSubInDomain
+	if err := c.ShouldBindJSON(&addRoleForm); err != nil {
+		response.FailWithMessage(err, c)
+		return
+	}
+	err := casbinService.AddRoleForSubInDomain(&addRoleForm)
+	if err != nil {
+		response.FailWithMessage(err.Error(), c)
+		return
+	}
+	response.Ok(c)
 }

@@ -14,6 +14,8 @@ func (r *RoleRouter) InitRoleRouter(Router *gin.RouterGroup) (R gin.IRouter) {
 		roleRouter.POST("domain_role", roleApi.AddDomainRole)
 		roleRouter.PUT("domain_role", roleApi.UpdateDomainRole)
 		roleRouter.GET("domain_roles", roleApi.GetAllRoles)
+		roleRouter.GET("domain_subs", roleApi.GetDomainSubsForRole)
+		roleRouter.POST("domain_subs", roleApi.AddRoleForSubInDomain)
 		roleRouter.DELETE("domain_role/:domain_name/:role_name", roleApi.DeleteDomainRole)
 	}
 	return roleRouter

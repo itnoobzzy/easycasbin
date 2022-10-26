@@ -11,11 +11,11 @@ type DeleteDomain struct {
 	DomainName string `form:"domain_name" json:"domain_name" binding:"required" uri:"domain_name"`
 }
 
-// AddRoleForUserInDomain 赋予用户对应域角色
-type AddRoleForUserInDomain struct {
-	Username string `form:"username" json:"username" binding:"required,my_format_check"`
-	Domain   string `form:"domain" json:"domain" binding:"required,my_format_check"`
-	Role     string `form:"role" json:"role" binding:"required,my_format_check"`
+// AddRoleForSubInDomain 赋予用户或角色对应域角色
+type AddRoleForSubInDomain struct {
+	Sub    string `form:"sub" json:"sub" binding:"required,my_format_check"`
+	Domain string `form:"domain" json:"domain" binding:"required,my_format_check"`
+	Role   string `form:"role" json:"role" binding:"required,my_format_check"`
 }
 
 // policy 单个权限

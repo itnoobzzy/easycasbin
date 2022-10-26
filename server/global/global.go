@@ -27,5 +27,6 @@ var (
 	BlackCache local_cache.Cache
 
 	// casbin enforcer
-	CASBIN_ENFORCER *casbin.CachedEnforcer
+	CASBIN_ENFORCER       *casbin.Enforcer
+	CASBIN_CACHE_ENFORCER *casbin.CachedEnforcer
 )

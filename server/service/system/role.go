@@ -6,14 +6,15 @@ import (
 	"akcasbin/models"
 	"errors"
 	"gorm.io/gorm/clause"
+	"strings"
 )
 
 type RoleService struct{}
 
 // AddRole 添加域角色
-func (rs *RoleService) AddRole(form *forms.AddDomainRole) (role models.Role, err error) {
-	role.Name = form.Name
-	role.Domain = form.Domain
+func (rs *RoleService) AddRole(form *forms.DomainRole) (role models.Role, err error) {
+	role.Name = form.RoleName
+	role.Domain = form.DomainName
 	if err = global.CASBIN_DB.Clauses(clause.OnConflict{
 		Columns:   []clause.Column{{Name: "id"}},
 		DoUpdates: clause.Assignments(map[string]interface{}{"deleted_at": nil}),
@@ -74,4 +75,30 @@ func (rs *RoleService) GetDomainRoles(form *forms.GetAllRoles) (roles []models.R
 	domain := form.Domain
 	global.CASBIN_DB.Table("role").Where("domain = ?", domain).Find(&roles)
 	return roles
+}
+
+// GetDomainSubsForRole 获取指定域角色下所有用户
+func (rs *RoleService) GetDomainSubsForRole(form *forms.DomainRole) (roles interface{}) {
+	role := "role:" + form.RoleName
+	domain := "domain:" + form.DomainName
+	subs, _ := global.CASBIN_ENFORCER.GetImplicitUsersForRole(role, domain)
+	return subs
+}
+
+// AddRoleForSubInDomain 为用户添加域角色或者为角色继承另一个角色权限
+func (casbinService *CasbinService) AddRoleForSubInDomain(form *forms.AddRoleForSubInDomain) error {
+	var (
+		role models.Role
+	)
+
+	err := global.CASBIN_DB.Where("name = ? and domain = ?",
+		strings.Split(form.Role, ":")[1], strings.Split(form.Domain, ":")[1]).First(&role).Error
+	if err != nil {
+		return errors.New("该角色不存在！")
+	}
+
+	if _, err = global.CASBIN_ENFORCER.AddRoleForUserInDomain(form.Sub, form.Role, form.Domain); err != nil {
+		return errors.New("添加域角色失败！")
+	}
+	return nil
 }
