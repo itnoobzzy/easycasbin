@@ -6,6 +6,7 @@ import (
 	"akcasbin/models"
 	"errors"
 	"fmt"
+	mapset "github.com/deckarep/golang-set/v2"
 	"gorm.io/gorm/clause"
 )
 
@@ -57,29 +58,6 @@ func (casbinService *CasbinService) DeleteDomain(form *forms.DeleteDomain) (err 
 	return
 }
 
-// AddPolicy 添加权限
-func (casbinService *CasbinService) AddPolicy(form *forms.AddPolicy) error {
-	var rules [][]string
-	for _, v := range form.Policies {
-		rule := make([]string, 0)
-		// 默认添加至default 域，并且添加的权限是生效的
-		if v.Domain == "" {
-			v.Domain = "default"
-		}
-		if v.Eft == "" {
-			v.Eft = "allow"
-		}
-		rule = append(rule, v.Name, v.Domain, v.Resource, v.Action, v.Eft)
-		rules = append(rules, rule)
-	}
-	_, err := global.CASBIN_ENFORCER.AddPolicies(rules)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
 // BatchEnforce 批量校验权限
 func (casbinService *CasbinService) BatchEnforce(form *forms.BatchEnforce) (results []bool, err error) {
 	var rules [][]interface{}
@@ -93,4 +71,55 @@ func (casbinService *CasbinService) BatchEnforce(form *forms.BatchEnforce) (resu
 		return nil, err
 	}
 	return results, nil
+}
+
+// GetPermissionsForSubInDomain 查询域角色或用户权限
+func (casbinService *CasbinService) GetPermissionsForSubInDomain(form *forms.SubInDomain) (results []interface{}) {
+	res, _ := global.CASBIN_ENFORCER.GetImplicitPermissionsForUser(form.Sub, form.Domain)
+	type ps struct {
+		Resource string
+		Action   string
+	}
+	newSet := mapset.NewSet[ps]()
+	for _, p := range res {
+		var policy ps
+		policy.Resource = p[2]
+		policy.Action = p[3]
+		newSet.Add(policy)
+	}
+	all := newSet.ToSlice()
+	for _, v := range all {
+		p := ps{
+			Resource: v.Resource,
+			Action:   v.Action,
+		}
+		results = append(results, p)
+	}
+
+	return results
+}
+
+// AddPermissionsForSubInDomain 添加域角色或用户权限
+func (casbinService *CasbinService) AddPermissionsForSubInDomain(form *forms.AddPolicy) error {
+	var rules [][]string
+	for _, v := range form.Policies {
+		rule := make([]string, 0)
+		// 默认添加至default 域，并且添加的权限是生效的
+		if v.Domain == "" {
+			v.Domain = "default"
+		}
+		if v.Eft == "" {
+			v.Eft = "allow"
+		}
+		rule = append(rule, v.Name, v.Domain, v.Resource, v.Action, v.Eft)
+		rules = append(rules, rule)
+	}
+	// 先删除这些权限，否则如果添加的权限中有任何已经存在的，将不会执行添加动作
+	if ok, _ := global.CASBIN_ENFORCER.RemovePolicies(rules); ok {
+		_, err := global.CASBIN_ENFORCER.AddPolicies(rules)
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }

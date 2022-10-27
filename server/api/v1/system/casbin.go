@@ -52,21 +52,6 @@ func (cas *CasbinApi) DeleteDomain(c *gin.Context) {
 	response.Ok(c)
 }
 
-// AddPolicy 添加权限
-func (cas *CasbinApi) AddPolicy(c *gin.Context) {
-	var addPolicyForm forms.AddPolicy
-	if err := c.ShouldBindJSON(&addPolicyForm); err != nil {
-		response.FailWithMessage(err, c)
-		return
-	}
-	err := casbinService.AddPolicy(&addPolicyForm)
-	if err != nil {
-		response.FailWithMessage(err.Error(), c)
-		return
-	}
-	response.Ok(c)
-}
-
 // BatchEnforce 批量校验权限，当有一条不通过时校验就不通过
 func (cas *CasbinApi) BatchEnforce(c *gin.Context) {
 	var batchEnforceForm forms.BatchEnforce
@@ -95,4 +80,30 @@ func (cas *CasbinApi) GetRolesForUserInDomain(c *gin.Context) {
 	}
 	results := casbinService.GetRolesForUserInDomain(&userDomainForm)
 	response.OkWithData(results, c)
+}
+
+// GetPermissionsForSubInDomain 查询域角色或用户权限
+func (cas *CasbinApi) GetPermissionsForSubInDomain(c *gin.Context) {
+	var form forms.SubInDomain
+	if err := c.ShouldBindQuery(&form); err != nil {
+		response.FailWithMessage(err, c)
+		return
+	}
+	res := casbinService.GetPermissionsForSubInDomain(&form)
+	response.OkWithData(res, c)
+}
+
+// AddPermissionsForSubInDomain 添加域角色或用户权限
+func (cas *CasbinApi) AddPermissionsForSubInDomain(c *gin.Context) {
+	var addPolicyForm forms.AddPolicy
+	if err := c.ShouldBindJSON(&addPolicyForm); err != nil {
+		response.FailWithMessage(err, c)
+		return
+	}
+	err := casbinService.AddPermissionsForSubInDomain(&addPolicyForm)
+	if err != nil {
+		response.FailWithMessage(err.Error(), c)
+		return
+	}
+	response.Ok(c)
 }

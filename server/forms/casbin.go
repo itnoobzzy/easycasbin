@@ -11,11 +11,17 @@ type DeleteDomain struct {
 	DomainName string `form:"domain_name" json:"domain_name" binding:"required" uri:"domain_name"`
 }
 
-// AddRoleForSubInDomain 赋予用户或角色对应域角色
-type AddRoleForSubInDomain struct {
+// RoleForSubInDomain 域上对应角色的subject
+type RoleForSubInDomain struct {
 	Sub    string `form:"sub" json:"sub" binding:"required,my_format_check"`
 	Domain string `form:"domain" json:"domain" binding:"required,my_format_check"`
 	Role   string `form:"role" json:"role" binding:"required,my_format_check"`
+}
+
+// SubInDomain 域上的subject
+type SubInDomain struct {
+	Sub    string `form:"sub" json:"sub" binding:"required,my_format_check"`
+	Domain string `form:"domain" json:"domain" binding:"required,my_format_check"`
 }
 
 // policy 单个权限

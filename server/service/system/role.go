@@ -86,7 +86,7 @@ func (rs *RoleService) GetDomainSubsForRole(form *forms.DomainRole) (roles inter
 }
 
 // AddRoleForSubInDomain 为用户添加域角色或者为角色继承另一个角色权限
-func (casbinService *CasbinService) AddRoleForSubInDomain(form *forms.AddRoleForSubInDomain) error {
+func (rs *RoleService) AddRoleForSubInDomain(form *forms.RoleForSubInDomain) error {
 	var (
 		role models.Role
 	)
@@ -99,6 +99,14 @@ func (casbinService *CasbinService) AddRoleForSubInDomain(form *forms.AddRoleFor
 
 	if _, err = global.CASBIN_ENFORCER.AddRoleForUserInDomain(form.Sub, form.Role, form.Domain); err != nil {
 		return errors.New("添加域角色失败！")
+	}
+	return nil
+}
+
+// DeleteRoleForSubInDomain 删除角色下subject（鉴权主体）
+func (rs *RoleService) DeleteRoleForSubInDomain(form *forms.RoleForSubInDomain) error {
+	if _, err := global.CASBIN_ENFORCER.DeleteRoleForUserInDomain(form.Sub, form.Role, form.Domain); err != nil {
+		return errors.New("删除失败！")
 	}
 	return nil
 }

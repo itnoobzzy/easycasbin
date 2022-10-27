@@ -17,8 +17,10 @@ func (s *CasbinRouter) InitCasbinRouter(Router *gin.RouterGroup) (R gin.IRouter)
 		casbinRouter.DELETE("domain/:domain_name", casbinApi.DeleteDomain)
 
 		casbinRouter.GET("roles_in_domain", casbinApi.GetRolesForUserInDomain)
-		casbinRouter.POST("add_policies", casbinApi.AddPolicy)
 		casbinRouter.POST("enforce_policies", casbinApi.BatchEnforce)
+
+		casbinRouter.POST("domain_permissions", casbinApi.AddPermissionsForSubInDomain)
+		casbinRouter.GET("domain_permissions", casbinApi.GetPermissionsForSubInDomain)
 	}
 	return casbinRouter
 }

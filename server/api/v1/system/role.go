@@ -77,12 +77,27 @@ func (ra *RoleApi) GetDomainSubsForRole(c *gin.Context) {
 
 // AddRoleForSubInDomain 赋予用户或角色域角色
 func (ra *RoleApi) AddRoleForSubInDomain(c *gin.Context) {
-	var addRoleForm forms.AddRoleForSubInDomain
+	var addRoleForm forms.RoleForSubInDomain
 	if err := c.ShouldBindJSON(&addRoleForm); err != nil {
 		response.FailWithMessage(err, c)
 		return
 	}
-	err := casbinService.AddRoleForSubInDomain(&addRoleForm)
+	err := roleService.AddRoleForSubInDomain(&addRoleForm)
+	if err != nil {
+		response.FailWithMessage(err.Error(), c)
+		return
+	}
+	response.Ok(c)
+}
+
+// DeleteRoleForSubInDomain 删除角色下subject（鉴权主体）
+func (ra *RoleApi) DeleteRoleForSubInDomain(c *gin.Context) {
+	var form forms.RoleForSubInDomain
+	if err := c.ShouldBindJSON(&form); err != nil {
+		response.FailWithMessage(err, c)
+		return
+	}
+	err := roleService.DeleteRoleForSubInDomain(&form)
 	if err != nil {
 		response.FailWithMessage(err.Error(), c)
 		return
