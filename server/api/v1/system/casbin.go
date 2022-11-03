@@ -95,12 +95,27 @@ func (cas *CasbinApi) GetPermissionsForSubInDomain(c *gin.Context) {
 
 // AddPermissionsForSubInDomain 添加域角色或用户权限
 func (cas *CasbinApi) AddPermissionsForSubInDomain(c *gin.Context) {
-	var addPolicyForm forms.AddPolicy
+	var addPolicyForm forms.Policies
 	if err := c.ShouldBindJSON(&addPolicyForm); err != nil {
 		response.FailWithMessage(err, c)
 		return
 	}
 	err := casbinService.AddPermissionsForSubInDomain(&addPolicyForm)
+	if err != nil {
+		response.FailWithMessage(err.Error(), c)
+		return
+	}
+	response.Ok(c)
+}
+
+// UpdatePermissionsForSubInDomain 更新域角色或用户权限
+func (cas *CasbinApi) UpdatePermissionsForSubInDomain(c *gin.Context) {
+	var form forms.UpdatePolicies
+	if err := c.ShouldBindJSON(&form); err != nil {
+		response.FailWithMessage(err, c)
+		return
+	}
+	err := casbinService.UpdatePermissionsForSubInDomain(&form)
 	if err != nil {
 		response.FailWithMessage(err.Error(), c)
 		return

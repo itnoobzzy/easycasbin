@@ -8,6 +8,8 @@ import (
 	"fmt"
 	mapset "github.com/deckarep/golang-set/v2"
 	"gorm.io/gorm/clause"
+	"sort"
+	"strings"
 )
 
 type CasbinService struct{}
@@ -100,26 +102,64 @@ func (casbinService *CasbinService) GetPermissionsForSubInDomain(form *forms.Sub
 }
 
 // AddPermissionsForSubInDomain 添加域角色或用户权限
-func (casbinService *CasbinService) AddPermissionsForSubInDomain(form *forms.AddPolicy) error {
-	var rules [][]string
-	for _, v := range form.Policies {
+func (casbinService *CasbinService) AddPermissionsForSubInDomain(form *forms.Policies) error {
+	if rules, err := casbinService.checkDomains(form.Policies); err != nil {
+		return err
+	} else {
+		// 先删除这些权限，否则如果添加的权限中有任何已经存在的，将不会执行添加动作
+		if ok, _ := global.CASBIN_ENFORCER.RemovePolicies(rules); ok {
+			_, err = global.CASBIN_ENFORCER.AddPolicies(rules)
+			if err != nil {
+				return err
+			}
+		}
+	}
+	return nil
+}
+
+// checkDomains 校验规则中的域是否存在
+// 不存在返回错误，正常返回规则列表
+func (casbinService *CasbinService) checkDomains(policies []forms.Policy) (rules [][]string, err error) {
+	allDomains, _ := casbinService.GetAllDomains()
+	sort.Strings(allDomains)
+	for _, v := range policies {
 		rule := make([]string, 0)
 		// 默认添加至default 域，并且添加的权限是生效的
 		if v.Domain == "" {
-			v.Domain = "default"
+			v.Domain = "domain:default"
 		}
 		if v.Eft == "" {
 			v.Eft = "allow"
 		}
 		rule = append(rule, v.Name, v.Domain, v.Resource, v.Action, v.Eft)
 		rules = append(rules, rule)
-	}
-	// 先删除这些权限，否则如果添加的权限中有任何已经存在的，将不会执行添加动作
-	if ok, _ := global.CASBIN_ENFORCER.RemovePolicies(rules); ok {
-		_, err := global.CASBIN_ENFORCER.AddPolicies(rules)
-		if err != nil {
-			return err
+		domain := strings.Split(v.Domain, ":")[1]
+		idx := sort.SearchStrings(allDomains, domain)
+		if in := idx < len(allDomains) && allDomains[idx] == domain; !in {
+			return rules, errors.New(fmt.Sprintf("domain: %s is not exists!", domain))
 		}
+	}
+	return rules, nil
+}
+
+// UpdatePermissionsForSubInDomain 更新域角色或用户权限
+func (casbinService *CasbinService) UpdatePermissionsForSubInDomain(form *forms.UpdatePolicies) error {
+	oldRules, err := casbinService.checkDomains(form.OldPolicies)
+	NewRules, err := casbinService.checkDomains(form.NewPolicies)
+	// 新旧规则数量必须一样
+	if len(oldRules) != len(NewRules) {
+		return errors.New("修改的新旧规则数量必须一致！")
+	}
+	if err != nil {
+		return err
+	}
+	updated, err := global.CASBIN_ENFORCER.UpdatePolicies(oldRules, NewRules)
+	if err != nil {
+		return err
+	}
+	fmt.Print(updated)
+	if !updated {
+		return errors.New("修改失败，未查询到对应规则！")
 	}
 	return nil
 }

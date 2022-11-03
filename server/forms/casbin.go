@@ -24,8 +24,8 @@ type SubInDomain struct {
 	Domain string `form:"domain" json:"domain" binding:"required,my_format_check"`
 }
 
-// policy 单个权限
-type policy struct {
+// Policy 单个权限
+type Policy struct {
 	Name     string `form:"name" json:"name" binding:"required,my_format_check"`
 	Domain   string `form:"domain" json:"domain" binding:"required,my_format_check"`
 	Resource string `form:"resource" json:"resource" binding:"required"`
@@ -33,14 +33,20 @@ type policy struct {
 	Eft      string `form:"eft" json:"eft"`
 }
 
-// AddPolicy 添加权限
-type AddPolicy struct {
-	Policies []*policy `form:"policies" json:"policies" binding:"required,dive"`
+// Policies 权限列表
+type Policies struct {
+	Policies []Policy `form:"policies" json:"policies" binding:"required,dive"`
+}
+
+// UpdatePolicies 权限列表
+type UpdatePolicies struct {
+	OldPolicies []Policy `form:"old_policies" json:"old_policies" binding:"required,dive"`
+	NewPolicies []Policy `form:"new_policies" json:"new_policies" binding:"required,dive"`
 }
 
 // BatchEnforce 批量校验权限
 type BatchEnforce struct {
-	Policies []*policy `form:"policies" json:"policies" binding:"required,dive"`
+	Policies []Policy `form:"policies" json:"policies" binding:"required,dive"`
 }
 
 // UserInDomain 域上的用户
