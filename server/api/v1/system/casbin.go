@@ -82,7 +82,7 @@ func (cas *CasbinApi) GetRolesForUserInDomain(c *gin.Context) {
 	response.OkWithData(results, c)
 }
 
-// GetPermissionsForSubInDomain 查询域角色或用户权限
+// GetPermissionsForSubInDomain 查询域角色或用户的权限
 func (cas *CasbinApi) GetPermissionsForSubInDomain(c *gin.Context) {
 	var form forms.SubInDomain
 	if err := c.ShouldBindQuery(&form); err != nil {
@@ -93,7 +93,7 @@ func (cas *CasbinApi) GetPermissionsForSubInDomain(c *gin.Context) {
 	response.OkWithData(res, c)
 }
 
-// AddPermissionsForSubInDomain 添加域角色或用户权限
+// AddPermissionsForSubInDomain 添加域角色或用户的权限
 func (cas *CasbinApi) AddPermissionsForSubInDomain(c *gin.Context) {
 	var addPolicyForm forms.Policies
 	if err := c.ShouldBindJSON(&addPolicyForm); err != nil {
@@ -108,7 +108,7 @@ func (cas *CasbinApi) AddPermissionsForSubInDomain(c *gin.Context) {
 	response.Ok(c)
 }
 
-// UpdatePermissionsForSubInDomain 更新域角色或用户权限
+// UpdatePermissionsForSubInDomain 更新域角色或用户的权限
 func (cas *CasbinApi) UpdatePermissionsForSubInDomain(c *gin.Context) {
 	var form forms.UpdatePolicies
 	if err := c.ShouldBindJSON(&form); err != nil {
@@ -116,6 +116,21 @@ func (cas *CasbinApi) UpdatePermissionsForSubInDomain(c *gin.Context) {
 		return
 	}
 	err := casbinService.UpdatePermissionsForSubInDomain(&form)
+	if err != nil {
+		response.FailWithMessage(err.Error(), c)
+		return
+	}
+	response.Ok(c)
+}
+
+// DeletePermissionsForSubInDomain 删除域角色或用户的权限
+func (cas *CasbinApi) DeletePermissionsForSubInDomain(c *gin.Context) {
+	var form forms.Policies
+	if err := c.ShouldBindJSON(&form); err != nil {
+		response.FailWithMessage(err, c)
+		return
+	}
+	err := casbinService.DeletePermissionsForSubInDomain(&form)
 	if err != nil {
 		response.FailWithMessage(err.Error(), c)
 		return

@@ -107,11 +107,13 @@ func (casbinService *CasbinService) AddPermissionsForSubInDomain(form *forms.Pol
 		return err
 	} else {
 		// 先删除这些权限，否则如果添加的权限中有任何已经存在的，将不会执行添加动作
-		if ok, _ := global.CASBIN_ENFORCER.RemovePolicies(rules); ok {
-			_, err = global.CASBIN_ENFORCER.AddPolicies(rules)
-			if err != nil {
-				return err
-			}
+		_, err = global.CASBIN_ENFORCER.RemovePolicies(rules)
+		if err != nil {
+			return err
+		}
+		_, err = global.CASBIN_ENFORCER.AddPolicies(rules)
+		if err != nil {
+			return err
 		}
 	}
 	return nil
@@ -160,6 +162,19 @@ func (casbinService *CasbinService) UpdatePermissionsForSubInDomain(form *forms.
 	fmt.Print(updated)
 	if !updated {
 		return errors.New("修改失败，未查询到对应规则！")
+	}
+	return nil
+}
+
+// DeletePermissionsForSubInDomain 删除域角色或用户的权限
+func (casbinService *CasbinService) DeletePermissionsForSubInDomain(form *forms.Policies) error {
+	if rules, err := casbinService.checkDomains(form.Policies); err != nil {
+		return err
+	} else {
+		_, err = global.CASBIN_ENFORCER.RemovePolicies(rules)
+		if err != nil {
+			return err
+		}
 	}
 	return nil
 }
