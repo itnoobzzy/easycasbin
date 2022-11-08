@@ -1,0 +1,23 @@
+syntax = "proto3";
+option go_package = "./.;proto";
+
+//import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+import "validate.proto";
+
+service domainRole {
+  // 添加域角色
+  rpc AddDomainRole(DomainRole) returns (AddDomainRoleRpl);
+}
+
+message DomainRole {
+  string domainName = 1 [(validate.rules).string.pattern="^[0-9a-zA-Z_]{1,}$"];
+  string roleName = 2;
+}
+
+message AddDomainRoleRpl {
+  int64 id = 1;
+  google.protobuf.Timestamp creatTime = 2;
+  string name = 3;
+  string domain = 4;
+}

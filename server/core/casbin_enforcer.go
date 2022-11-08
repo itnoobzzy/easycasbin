@@ -33,10 +33,10 @@ func CachedEnforcer() (enforcer *casbin.CachedEnforcer) {
 }
 
 // Enforcer 普通enforcer
-func Enforcer() (enforcer *casbin.Enforcer) {
+func Enforcer(path string) (enforcer *casbin.Enforcer) {
 	once.Do(func() {
 		a, _ := gormadapter.NewAdapterByDB(global.CASBIN_DB)
-		m, err := model.NewModelFromFile("./server/casbin_rbac_domain.conf")
+		m, err := model.NewModelFromFile(path)
 		if err != nil {
 			zap.L().Error("casbin model load failed!", zap.Error(err))
 		}
