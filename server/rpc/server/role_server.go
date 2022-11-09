@@ -1,34 +1,20 @@
 package main
 
 import (
-	"akcasbin/core"
 	"akcasbin/forms"
-	"akcasbin/global"
-	"akcasbin/initialize"
 	pb "akcasbin/rpc/proto"
-	"akcasbin/service"
 	"context"
-	"flag"
-	"go.uber.org/zap"
-	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/types/known/timestamppb"
-	"net"
 )
 
-var (
-	port        = flag.Int("port", 50051, "The server port")
-	roleService = service.ServiceGroupApp.SystemServiceGroup.RoleService
-)
-
-type server struct {
+type RoleServer struct {
 }
 
-func (s *server) AddDomainRole(ctx context.Context, request *pb.DomainRole) (*pb.AddDomainRoleRpl, error) {
-	//st := status.New(codes.OK, "ok")
+// AddDomainRole 添加域角色
+func (s *RoleServer) AddDomainRole(ctx context.Context, request *pb.AddDomainRoleReq) (*pb.AddDomainRoleRpl, error) {
 	if err := request.Validate(); err != nil {
-		//msg := fmt.Printf("参数错误：%v", err.Error())
 		st := status.New(codes.InvalidArgument, err.Error())
 		return nil, st.Err()
 	}
@@ -40,41 +26,73 @@ func (s *server) AddDomainRole(ctx context.Context, request *pb.DomainRole) (*pb
 
 	role, err := roleService.AddRole(&form)
 	if err != nil {
-		return nil, err
+		st := status.New(codes.Internal, err.Error())
+		return nil, st.Err()
 	}
 	return &pb.AddDomainRoleRpl{
-		Domain:    role.Domain,
-		Name:      role.Name,
-		Id:        int64(role.ID),
-		CreatTime: timestamppb.New(role.CreatedAt),
+		Code: uint32(codes.OK),
+		Msg:  "ok",
+		Data: &pb.AddDomainRoleRpl_Data{
+			Id:        int64(role.ID),
+			CreatTime: timestamppb.New(role.CreatedAt),
+			Name:      role.Name,
+			Domain:    role.Domain,
+		},
 	}, nil
 }
 
-func main() {
-	global.CASBIN_VP = core.Viper("../server/config.yaml")
-	global.CASBIN_LOG = core.Zap()
-	zap.ReplaceGlobals(global.CASBIN_LOG)
-	global.CASBIN_DB = initialize.Gorm()
-	global.CASBIN_ENFORCER = core.Enforcer("../server/casbin_rbac_domain.conf")
-	// 初始化表单校验翻译器
-	err := initialize.InitTrans("zh")
-	if err != nil {
-		panic(err)
-	}
-	if global.CASBIN_DB != nil {
-		initialize.RegisterTables(global.CASBIN_DB)
-		db, _ := global.CASBIN_DB.DB()
-		defer db.Close()
+// UpdateRoleInfo 更新域角色信息
+func (s *RoleServer) UpdateRoleInfo(ctx context.Context, request *pb.UpdateDomainRoleReq) (*pb.UpdateDomainRoleRpl, error) {
+	if err := request.Validate(); err != nil {
+		st := status.New(codes.InvalidArgument, err.Error())
+		return nil, st.Err()
 	}
 
-	g := grpc.NewServer()
-	pb.RegisterDomainRoleServer(g, &server{})
-	lis, err := net.Listen("tcp", "0.0.0.0:5001")
-	if err != nil {
-		panic("failed to listen:" + err.Error())
+	form := forms.UpdateDomainRole{
+		RoleName:    request.RoleName,
+		DomainName:  request.DomainName,
+		NewRoleName: request.NewRoleName,
 	}
-	err = g.Serve(lis)
+
+	role, err := roleService.UpdateRoleInfo(&form)
 	if err != nil {
-		panic("failed to start gtpc:" + err.Error())
+		st := status.New(codes.Internal, err.Error())
+		return nil, st.Err()
 	}
+	return &pb.UpdateDomainRoleRpl{
+		Code: uint32(codes.OK),
+		Msg:  "ok",
+		Data: &pb.UpdateDomainRoleRpl_Data{
+			Id:         int64(role.ID),
+			UpdateTime: timestamppb.New(role.UpdatedAt),
+			Name:       role.Name,
+			Domain:     role.Domain,
+		},
+	}, nil
+}
+
+// DeleteRole 删除对应域的角色
+func (s *RoleServer) DeleteRole(ctx context.Context, request *pb.DeleteDomainRoleReq) (*pb.DeleteDomainRoleRpl, error) {
+	if err := request.Validate(); err != nil {
+		st := status.New(codes.InvalidArgument, err.Error())
+		return nil, st.Err()
+	}
+
+	form := forms.DeleteDomainRole{
+		RoleName:   request.RoleName,
+		DomainName: request.DomainName,
+	}
+
+	err := roleService.DeleteRole(&form)
+	if err != nil {
+		st := status.New(codes.Internal, err.Error())
+		return nil, st.Err()
+	}
+	return &pb.DeleteDomainRoleRpl{
+		Code: uint32(codes.OK),
+		Msg:  "ok",
+		Data: &pb.DeleteDomainRoleRpl_Data{
+			DeleteTime: timestamppb.Now(),
+		},
+	}, nil
 }

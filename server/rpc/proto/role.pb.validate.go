@@ -35,30 +35,30 @@ var (
 	_ = sort.Sort
 )
 
-// Validate checks the field values on DomainRole with the rules defined in the
-// proto definition for this message. If any rules are violated, the first
-// error encountered is returned, or nil if there are no violations.
-func (m *DomainRole) Validate() error {
+// Validate checks the field values on AddDomainRoleReq with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// first error encountered is returned, or nil if there are no violations.
+func (m *AddDomainRoleReq) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on DomainRole with the rules defined in
-// the proto definition for this message. If any rules are violated, the
-// result is a list of violation errors wrapped in DomainRoleMultiError, or
-// nil if none found.
-func (m *DomainRole) ValidateAll() error {
+// ValidateAll checks the field values on AddDomainRoleReq with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// AddDomainRoleReqMultiError, or nil if none found.
+func (m *AddDomainRoleReq) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *DomainRole) validate(all bool) error {
+func (m *AddDomainRoleReq) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
 
 	var errors []error
 
-	if !_DomainRole_DomainName_Pattern.MatchString(m.GetDomainName()) {
-		err := DomainRoleValidationError{
+	if !_AddDomainRoleReq_DomainName_Pattern.MatchString(m.GetDomainName()) {
+		err := AddDomainRoleReqValidationError{
 			field:  "DomainName",
 			reason: "value does not match regex pattern \"^[0-9a-zA-Z_]{1,}$\"",
 		}
@@ -68,21 +68,31 @@ func (m *DomainRole) validate(all bool) error {
 		errors = append(errors, err)
 	}
 
-	// no validation rules for RoleName
+	if !_AddDomainRoleReq_RoleName_Pattern.MatchString(m.GetRoleName()) {
+		err := AddDomainRoleReqValidationError{
+			field:  "RoleName",
+			reason: "value does not match regex pattern \"^[0-9a-zA-Z_]{1,}$\"",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
 
 	if len(errors) > 0 {
-		return DomainRoleMultiError(errors)
+		return AddDomainRoleReqMultiError(errors)
 	}
 
 	return nil
 }
 
-// DomainRoleMultiError is an error wrapping multiple validation errors
-// returned by DomainRole.ValidateAll() if the designated constraints aren't met.
-type DomainRoleMultiError []error
+// AddDomainRoleReqMultiError is an error wrapping multiple validation errors
+// returned by AddDomainRoleReq.ValidateAll() if the designated constraints
+// aren't met.
+type AddDomainRoleReqMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m DomainRoleMultiError) Error() string {
+func (m AddDomainRoleReqMultiError) Error() string {
 	var msgs []string
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -91,11 +101,11 @@ func (m DomainRoleMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m DomainRoleMultiError) AllErrors() []error { return m }
+func (m AddDomainRoleReqMultiError) AllErrors() []error { return m }
 
-// DomainRoleValidationError is the validation error returned by
-// DomainRole.Validate if the designated constraints aren't met.
-type DomainRoleValidationError struct {
+// AddDomainRoleReqValidationError is the validation error returned by
+// AddDomainRoleReq.Validate if the designated constraints aren't met.
+type AddDomainRoleReqValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -103,22 +113,22 @@ type DomainRoleValidationError struct {
 }
 
 // Field function returns field value.
-func (e DomainRoleValidationError) Field() string { return e.field }
+func (e AddDomainRoleReqValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e DomainRoleValidationError) Reason() string { return e.reason }
+func (e AddDomainRoleReqValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e DomainRoleValidationError) Cause() error { return e.cause }
+func (e AddDomainRoleReqValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e DomainRoleValidationError) Key() bool { return e.key }
+func (e AddDomainRoleReqValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e DomainRoleValidationError) ErrorName() string { return "DomainRoleValidationError" }
+func (e AddDomainRoleReqValidationError) ErrorName() string { return "AddDomainRoleReqValidationError" }
 
 // Error satisfies the builtin error interface
-func (e DomainRoleValidationError) Error() string {
+func (e AddDomainRoleReqValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -130,14 +140,14 @@ func (e DomainRoleValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sDomainRole.%s: %s%s",
+		"invalid %sAddDomainRoleReq.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = DomainRoleValidationError{}
+var _ error = AddDomainRoleReqValidationError{}
 
 var _ interface {
 	Field() string
@@ -145,9 +155,11 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = DomainRoleValidationError{}
+} = AddDomainRoleReqValidationError{}
 
-var _DomainRole_DomainName_Pattern = regexp.MustCompile("^[0-9a-zA-Z_]{1,}$")
+var _AddDomainRoleReq_DomainName_Pattern = regexp.MustCompile("^[0-9a-zA-Z_]{1,}$")
+
+var _AddDomainRoleReq_RoleName_Pattern = regexp.MustCompile("^[0-9a-zA-Z_]{1,}$")
 
 // Validate checks the field values on AddDomainRoleRpl with the rules defined
 // in the proto definition for this message. If any rules are violated, the
@@ -171,14 +183,16 @@ func (m *AddDomainRoleRpl) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for Id
+	// no validation rules for Code
+
+	// no validation rules for Msg
 
 	if all {
-		switch v := interface{}(m.GetCreatTime()).(type) {
+		switch v := interface{}(m.GetData()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
 				errors = append(errors, AddDomainRoleRplValidationError{
-					field:  "CreatTime",
+					field:  "Data",
 					reason: "embedded message failed validation",
 					cause:  err,
 				})
@@ -186,25 +200,21 @@ func (m *AddDomainRoleRpl) validate(all bool) error {
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
 				errors = append(errors, AddDomainRoleRplValidationError{
-					field:  "CreatTime",
+					field:  "Data",
 					reason: "embedded message failed validation",
 					cause:  err,
 				})
 			}
 		}
-	} else if v, ok := interface{}(m.GetCreatTime()).(interface{ Validate() error }); ok {
+	} else if v, ok := interface{}(m.GetData()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return AddDomainRoleRplValidationError{
-				field:  "CreatTime",
+				field:  "Data",
 				reason: "embedded message failed validation",
 				cause:  err,
 			}
 		}
 	}
-
-	// no validation rules for Name
-
-	// no validation rules for Domain
 
 	if len(errors) > 0 {
 		return AddDomainRoleRplMultiError(errors)
@@ -283,3 +293,947 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = AddDomainRoleRplValidationError{}
+
+// Validate checks the field values on UpdateDomainRoleReq with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *UpdateDomainRoleReq) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on UpdateDomainRoleReq with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// UpdateDomainRoleReqMultiError, or nil if none found.
+func (m *UpdateDomainRoleReq) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *UpdateDomainRoleReq) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if !_UpdateDomainRoleReq_DomainName_Pattern.MatchString(m.GetDomainName()) {
+		err := UpdateDomainRoleReqValidationError{
+			field:  "DomainName",
+			reason: "value does not match regex pattern \"^[0-9a-zA-Z_]{1,}$\"",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if !_UpdateDomainRoleReq_RoleName_Pattern.MatchString(m.GetRoleName()) {
+		err := UpdateDomainRoleReqValidationError{
+			field:  "RoleName",
+			reason: "value does not match regex pattern \"^[0-9a-zA-Z_]{1,}$\"",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if !_UpdateDomainRoleReq_NewRoleName_Pattern.MatchString(m.GetNewRoleName()) {
+		err := UpdateDomainRoleReqValidationError{
+			field:  "NewRoleName",
+			reason: "value does not match regex pattern \"^[0-9a-zA-Z_]{1,}$\"",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if len(errors) > 0 {
+		return UpdateDomainRoleReqMultiError(errors)
+	}
+
+	return nil
+}
+
+// UpdateDomainRoleReqMultiError is an error wrapping multiple validation
+// errors returned by UpdateDomainRoleReq.ValidateAll() if the designated
+// constraints aren't met.
+type UpdateDomainRoleReqMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m UpdateDomainRoleReqMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m UpdateDomainRoleReqMultiError) AllErrors() []error { return m }
+
+// UpdateDomainRoleReqValidationError is the validation error returned by
+// UpdateDomainRoleReq.Validate if the designated constraints aren't met.
+type UpdateDomainRoleReqValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e UpdateDomainRoleReqValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e UpdateDomainRoleReqValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e UpdateDomainRoleReqValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e UpdateDomainRoleReqValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e UpdateDomainRoleReqValidationError) ErrorName() string {
+	return "UpdateDomainRoleReqValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e UpdateDomainRoleReqValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sUpdateDomainRoleReq.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = UpdateDomainRoleReqValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = UpdateDomainRoleReqValidationError{}
+
+var _UpdateDomainRoleReq_DomainName_Pattern = regexp.MustCompile("^[0-9a-zA-Z_]{1,}$")
+
+var _UpdateDomainRoleReq_RoleName_Pattern = regexp.MustCompile("^[0-9a-zA-Z_]{1,}$")
+
+var _UpdateDomainRoleReq_NewRoleName_Pattern = regexp.MustCompile("^[0-9a-zA-Z_]{1,}$")
+
+// Validate checks the field values on UpdateDomainRoleRpl with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *UpdateDomainRoleRpl) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on UpdateDomainRoleRpl with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// UpdateDomainRoleRplMultiError, or nil if none found.
+func (m *UpdateDomainRoleRpl) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *UpdateDomainRoleRpl) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Code
+
+	// no validation rules for Msg
+
+	if all {
+		switch v := interface{}(m.GetData()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, UpdateDomainRoleRplValidationError{
+					field:  "Data",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, UpdateDomainRoleRplValidationError{
+					field:  "Data",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetData()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return UpdateDomainRoleRplValidationError{
+				field:  "Data",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if len(errors) > 0 {
+		return UpdateDomainRoleRplMultiError(errors)
+	}
+
+	return nil
+}
+
+// UpdateDomainRoleRplMultiError is an error wrapping multiple validation
+// errors returned by UpdateDomainRoleRpl.ValidateAll() if the designated
+// constraints aren't met.
+type UpdateDomainRoleRplMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m UpdateDomainRoleRplMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m UpdateDomainRoleRplMultiError) AllErrors() []error { return m }
+
+// UpdateDomainRoleRplValidationError is the validation error returned by
+// UpdateDomainRoleRpl.Validate if the designated constraints aren't met.
+type UpdateDomainRoleRplValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e UpdateDomainRoleRplValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e UpdateDomainRoleRplValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e UpdateDomainRoleRplValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e UpdateDomainRoleRplValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e UpdateDomainRoleRplValidationError) ErrorName() string {
+	return "UpdateDomainRoleRplValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e UpdateDomainRoleRplValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sUpdateDomainRoleRpl.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = UpdateDomainRoleRplValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = UpdateDomainRoleRplValidationError{}
+
+// Validate checks the field values on DeleteDomainRoleReq with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *DeleteDomainRoleReq) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on DeleteDomainRoleReq with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// DeleteDomainRoleReqMultiError, or nil if none found.
+func (m *DeleteDomainRoleReq) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *DeleteDomainRoleReq) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if !_DeleteDomainRoleReq_DomainName_Pattern.MatchString(m.GetDomainName()) {
+		err := DeleteDomainRoleReqValidationError{
+			field:  "DomainName",
+			reason: "value does not match regex pattern \"^[0-9a-zA-Z_]{1,}$\"",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if !_DeleteDomainRoleReq_RoleName_Pattern.MatchString(m.GetRoleName()) {
+		err := DeleteDomainRoleReqValidationError{
+			field:  "RoleName",
+			reason: "value does not match regex pattern \"^[0-9a-zA-Z_]{1,}$\"",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if len(errors) > 0 {
+		return DeleteDomainRoleReqMultiError(errors)
+	}
+
+	return nil
+}
+
+// DeleteDomainRoleReqMultiError is an error wrapping multiple validation
+// errors returned by DeleteDomainRoleReq.ValidateAll() if the designated
+// constraints aren't met.
+type DeleteDomainRoleReqMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m DeleteDomainRoleReqMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m DeleteDomainRoleReqMultiError) AllErrors() []error { return m }
+
+// DeleteDomainRoleReqValidationError is the validation error returned by
+// DeleteDomainRoleReq.Validate if the designated constraints aren't met.
+type DeleteDomainRoleReqValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e DeleteDomainRoleReqValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e DeleteDomainRoleReqValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e DeleteDomainRoleReqValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e DeleteDomainRoleReqValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e DeleteDomainRoleReqValidationError) ErrorName() string {
+	return "DeleteDomainRoleReqValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e DeleteDomainRoleReqValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sDeleteDomainRoleReq.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = DeleteDomainRoleReqValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = DeleteDomainRoleReqValidationError{}
+
+var _DeleteDomainRoleReq_DomainName_Pattern = regexp.MustCompile("^[0-9a-zA-Z_]{1,}$")
+
+var _DeleteDomainRoleReq_RoleName_Pattern = regexp.MustCompile("^[0-9a-zA-Z_]{1,}$")
+
+// Validate checks the field values on DeleteDomainRoleRpl with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *DeleteDomainRoleRpl) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on DeleteDomainRoleRpl with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// DeleteDomainRoleRplMultiError, or nil if none found.
+func (m *DeleteDomainRoleRpl) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *DeleteDomainRoleRpl) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Code
+
+	// no validation rules for Msg
+
+	if all {
+		switch v := interface{}(m.GetData()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, DeleteDomainRoleRplValidationError{
+					field:  "Data",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, DeleteDomainRoleRplValidationError{
+					field:  "Data",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetData()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return DeleteDomainRoleRplValidationError{
+				field:  "Data",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if len(errors) > 0 {
+		return DeleteDomainRoleRplMultiError(errors)
+	}
+
+	return nil
+}
+
+// DeleteDomainRoleRplMultiError is an error wrapping multiple validation
+// errors returned by DeleteDomainRoleRpl.ValidateAll() if the designated
+// constraints aren't met.
+type DeleteDomainRoleRplMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m DeleteDomainRoleRplMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m DeleteDomainRoleRplMultiError) AllErrors() []error { return m }
+
+// DeleteDomainRoleRplValidationError is the validation error returned by
+// DeleteDomainRoleRpl.Validate if the designated constraints aren't met.
+type DeleteDomainRoleRplValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e DeleteDomainRoleRplValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e DeleteDomainRoleRplValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e DeleteDomainRoleRplValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e DeleteDomainRoleRplValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e DeleteDomainRoleRplValidationError) ErrorName() string {
+	return "DeleteDomainRoleRplValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e DeleteDomainRoleRplValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sDeleteDomainRoleRpl.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = DeleteDomainRoleRplValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = DeleteDomainRoleRplValidationError{}
+
+// Validate checks the field values on AddDomainRoleRpl_Data with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *AddDomainRoleRpl_Data) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on AddDomainRoleRpl_Data with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// AddDomainRoleRpl_DataMultiError, or nil if none found.
+func (m *AddDomainRoleRpl_Data) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *AddDomainRoleRpl_Data) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Id
+
+	if all {
+		switch v := interface{}(m.GetCreatTime()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, AddDomainRoleRpl_DataValidationError{
+					field:  "CreatTime",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, AddDomainRoleRpl_DataValidationError{
+					field:  "CreatTime",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetCreatTime()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return AddDomainRoleRpl_DataValidationError{
+				field:  "CreatTime",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	// no validation rules for Name
+
+	// no validation rules for Domain
+
+	if len(errors) > 0 {
+		return AddDomainRoleRpl_DataMultiError(errors)
+	}
+
+	return nil
+}
+
+// AddDomainRoleRpl_DataMultiError is an error wrapping multiple validation
+// errors returned by AddDomainRoleRpl_Data.ValidateAll() if the designated
+// constraints aren't met.
+type AddDomainRoleRpl_DataMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m AddDomainRoleRpl_DataMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m AddDomainRoleRpl_DataMultiError) AllErrors() []error { return m }
+
+// AddDomainRoleRpl_DataValidationError is the validation error returned by
+// AddDomainRoleRpl_Data.Validate if the designated constraints aren't met.
+type AddDomainRoleRpl_DataValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e AddDomainRoleRpl_DataValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e AddDomainRoleRpl_DataValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e AddDomainRoleRpl_DataValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e AddDomainRoleRpl_DataValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e AddDomainRoleRpl_DataValidationError) ErrorName() string {
+	return "AddDomainRoleRpl_DataValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e AddDomainRoleRpl_DataValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sAddDomainRoleRpl_Data.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = AddDomainRoleRpl_DataValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = AddDomainRoleRpl_DataValidationError{}
+
+// Validate checks the field values on UpdateDomainRoleRpl_Data with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *UpdateDomainRoleRpl_Data) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on UpdateDomainRoleRpl_Data with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// UpdateDomainRoleRpl_DataMultiError, or nil if none found.
+func (m *UpdateDomainRoleRpl_Data) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *UpdateDomainRoleRpl_Data) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Id
+
+	if all {
+		switch v := interface{}(m.GetUpdateTime()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, UpdateDomainRoleRpl_DataValidationError{
+					field:  "UpdateTime",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, UpdateDomainRoleRpl_DataValidationError{
+					field:  "UpdateTime",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetUpdateTime()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return UpdateDomainRoleRpl_DataValidationError{
+				field:  "UpdateTime",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	// no validation rules for Name
+
+	// no validation rules for Domain
+
+	if len(errors) > 0 {
+		return UpdateDomainRoleRpl_DataMultiError(errors)
+	}
+
+	return nil
+}
+
+// UpdateDomainRoleRpl_DataMultiError is an error wrapping multiple validation
+// errors returned by UpdateDomainRoleRpl_Data.ValidateAll() if the designated
+// constraints aren't met.
+type UpdateDomainRoleRpl_DataMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m UpdateDomainRoleRpl_DataMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m UpdateDomainRoleRpl_DataMultiError) AllErrors() []error { return m }
+
+// UpdateDomainRoleRpl_DataValidationError is the validation error returned by
+// UpdateDomainRoleRpl_Data.Validate if the designated constraints aren't met.
+type UpdateDomainRoleRpl_DataValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e UpdateDomainRoleRpl_DataValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e UpdateDomainRoleRpl_DataValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e UpdateDomainRoleRpl_DataValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e UpdateDomainRoleRpl_DataValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e UpdateDomainRoleRpl_DataValidationError) ErrorName() string {
+	return "UpdateDomainRoleRpl_DataValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e UpdateDomainRoleRpl_DataValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sUpdateDomainRoleRpl_Data.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = UpdateDomainRoleRpl_DataValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = UpdateDomainRoleRpl_DataValidationError{}
+
+// Validate checks the field values on DeleteDomainRoleRpl_Data with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *DeleteDomainRoleRpl_Data) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on DeleteDomainRoleRpl_Data with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// DeleteDomainRoleRpl_DataMultiError, or nil if none found.
+func (m *DeleteDomainRoleRpl_Data) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *DeleteDomainRoleRpl_Data) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if all {
+		switch v := interface{}(m.GetDeleteTime()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, DeleteDomainRoleRpl_DataValidationError{
+					field:  "DeleteTime",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, DeleteDomainRoleRpl_DataValidationError{
+					field:  "DeleteTime",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetDeleteTime()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return DeleteDomainRoleRpl_DataValidationError{
+				field:  "DeleteTime",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if len(errors) > 0 {
+		return DeleteDomainRoleRpl_DataMultiError(errors)
+	}
+
+	return nil
+}
+
+// DeleteDomainRoleRpl_DataMultiError is an error wrapping multiple validation
+// errors returned by DeleteDomainRoleRpl_Data.ValidateAll() if the designated
+// constraints aren't met.
+type DeleteDomainRoleRpl_DataMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m DeleteDomainRoleRpl_DataMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m DeleteDomainRoleRpl_DataMultiError) AllErrors() []error { return m }
+
+// DeleteDomainRoleRpl_DataValidationError is the validation error returned by
+// DeleteDomainRoleRpl_Data.Validate if the designated constraints aren't met.
+type DeleteDomainRoleRpl_DataValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e DeleteDomainRoleRpl_DataValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e DeleteDomainRoleRpl_DataValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e DeleteDomainRoleRpl_DataValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e DeleteDomainRoleRpl_DataValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e DeleteDomainRoleRpl_DataValidationError) ErrorName() string {
+	return "DeleteDomainRoleRpl_DataValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e DeleteDomainRoleRpl_DataValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sDeleteDomainRoleRpl_Data.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = DeleteDomainRoleRpl_DataValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = DeleteDomainRoleRpl_DataValidationError{}

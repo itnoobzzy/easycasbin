@@ -3,21 +3,64 @@ option go_package = "./.;proto";
 
 //import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
+//import "google/protobuf/any.proto";
 import "validate.proto";
 
-service domainRole {
+service DomainRole {
   // 添加域角色
-  rpc AddDomainRole(DomainRole) returns (AddDomainRoleRpl);
+  rpc AddDomainRole(AddDomainRoleReq) returns (AddDomainRoleRpl);
+  // 更新域角色信息
+  rpc UpdateRoleInfo(UpdateDomainRoleReq) returns (UpdateDomainRoleRpl);
+  // DeleteRole 删除对应域的角色
+  rpc DeleteRole(DeleteDomainRoleReq) returns (DeleteDomainRoleRpl);
 }
 
-message DomainRole {
+
+message AddDomainRoleReq {
   string domainName = 1 [(validate.rules).string.pattern="^[0-9a-zA-Z_]{1,}$"];
-  string roleName = 2;
+  string roleName = 2 [(validate.rules).string.pattern="^[0-9a-zA-Z_]{1,}$"];
 }
 
 message AddDomainRoleRpl {
-  int64 id = 1;
-  google.protobuf.Timestamp creatTime = 2;
-  string name = 3;
-  string domain = 4;
+  message Data {
+    int64 id = 1;
+    google.protobuf.Timestamp creatTime = 2;
+    string name = 3;
+    string domain = 4;
+  }
+  uint32 code = 1;
+  string msg = 2;
+  Data data = 3;
+}
+
+message UpdateDomainRoleReq {
+  string domainName = 1 [(validate.rules).string.pattern="^[0-9a-zA-Z_]{1,}$"];
+  string roleName = 2 [(validate.rules).string.pattern="^[0-9a-zA-Z_]{1,}$"];
+  string newRoleName = 3 [(validate.rules).string.pattern="^[0-9a-zA-Z_]{1,}$"];
+}
+
+message UpdateDomainRoleRpl {
+  message Data {
+    int64 id = 1;
+    google.protobuf.Timestamp updateTime = 2;
+    string name = 3;
+    string domain = 4;
+  }
+  uint32 code = 1;
+  string msg = 2;
+  Data data = 3;
+}
+
+message DeleteDomainRoleReq {
+  string domainName = 1 [(validate.rules).string.pattern="^[0-9a-zA-Z_]{1,}$"];
+  string roleName = 2 [(validate.rules).string.pattern="^[0-9a-zA-Z_]{1,}$"];
+}
+
+message DeleteDomainRoleRpl {
+  message Data {
+    google.protobuf.Timestamp deleteTime = 1;
+  }
+  uint32 code = 1;
+  string msg = 2;
+  Data data = 3;
 }
