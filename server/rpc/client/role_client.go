@@ -48,8 +48,32 @@ func main() {
 	//	&proto.UpdateDomainRoleReq{RoleName: "role1", DomainName: "domain12", NewRoleName: "role2"},
 	//)
 
-	reply, err := c.DeleteRole(context.Background(),
-		&proto.DeleteDomainRoleReq{RoleName: "role2", DomainName: "domain12"},
+	//reply, err := c.DeleteRole(context.Background(),
+	//	&proto.DeleteDomainRoleReq{RoleName: "role2", DomainName: "domain12"},
+	//)
+
+	//reply, err := c.GetDomainRoles(context.Background(),
+	//	&proto.GetAllRolesReq{DomainName: "domain1"},
+	//)
+
+	//reply, err := c.GetDomainSubsForRole(context.Background(),
+	//	&proto.GetDomainSubsForRoleReq{DomainName: "domain1", RoleName: "admin"},
+	//)
+
+	//reply, err := c.AddRoleForSubInDomain(context.Background(),
+	//	&proto.AddRoleForSubInDomainReq{
+	//		Sub:    "user:zhouzy1",
+	//		Domain: "domain:domain1",
+	//		Role:   "role:admin3",
+	//	},
+	//)
+
+	reply, err := c.DeleteRoleForSubInDomain(context.Background(),
+		&proto.DeleteRoleForSubInDomainReq{
+			Sub:    "user:zhouzy1",
+			Domain: "domain:domain1",
+			Role:   "role:admin3",
+		},
 	)
 
 	HandleGrpcErrorToHttp(err)

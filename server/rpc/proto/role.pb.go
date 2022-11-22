@@ -388,6 +388,476 @@ func (x *DeleteDomainRoleRpl) GetData() *DeleteDomainRoleRpl_Data {
 	return nil
 }
 
+type GetAllRolesReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	DomainName string `protobuf:"bytes,1,opt,name=domainName,proto3" json:"domainName,omitempty"`
+}
+
+func (x *GetAllRolesReq) Reset() {
+	*x = GetAllRolesReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_role_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetAllRolesReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAllRolesReq) ProtoMessage() {}
+
+func (x *GetAllRolesReq) ProtoReflect() protoreflect.Message {
+	mi := &file_role_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAllRolesReq.ProtoReflect.Descriptor instead.
+func (*GetAllRolesReq) Descriptor() ([]byte, []int) {
+	return file_role_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *GetAllRolesReq) GetDomainName() string {
+	if x != nil {
+		return x.DomainName
+	}
+	return ""
+}
+
+type GetAllRolesRpl struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Code uint32                 `protobuf:"varint,1,opt,name=code,proto3" json:"code,omitempty"`
+	Msg  string                 `protobuf:"bytes,2,opt,name=msg,proto3" json:"msg,omitempty"`
+	Data []*GetAllRolesRpl_Data `protobuf:"bytes,3,rep,name=data,proto3" json:"data,omitempty"`
+}
+
+func (x *GetAllRolesRpl) Reset() {
+	*x = GetAllRolesRpl{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_role_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetAllRolesRpl) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAllRolesRpl) ProtoMessage() {}
+
+func (x *GetAllRolesRpl) ProtoReflect() protoreflect.Message {
+	mi := &file_role_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAllRolesRpl.ProtoReflect.Descriptor instead.
+func (*GetAllRolesRpl) Descriptor() ([]byte, []int) {
+	return file_role_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *GetAllRolesRpl) GetCode() uint32 {
+	if x != nil {
+		return x.Code
+	}
+	return 0
+}
+
+func (x *GetAllRolesRpl) GetMsg() string {
+	if x != nil {
+		return x.Msg
+	}
+	return ""
+}
+
+func (x *GetAllRolesRpl) GetData() []*GetAllRolesRpl_Data {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+type AddRoleForSubInDomainReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// eg: user:zhouzy1 or role:admin
+	Sub string `protobuf:"bytes,1,opt,name=sub,proto3" json:"sub,omitempty"`
+	// eg: domain:domain1
+	Domain string `protobuf:"bytes,2,opt,name=domain,proto3" json:"domain,omitempty"`
+	// eg: role:common
+	Role string `protobuf:"bytes,3,opt,name=role,proto3" json:"role,omitempty"`
+}
+
+func (x *AddRoleForSubInDomainReq) Reset() {
+	*x = AddRoleForSubInDomainReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_role_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddRoleForSubInDomainReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddRoleForSubInDomainReq) ProtoMessage() {}
+
+func (x *AddRoleForSubInDomainReq) ProtoReflect() protoreflect.Message {
+	mi := &file_role_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddRoleForSubInDomainReq.ProtoReflect.Descriptor instead.
+func (*AddRoleForSubInDomainReq) Descriptor() ([]byte, []int) {
+	return file_role_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *AddRoleForSubInDomainReq) GetSub() string {
+	if x != nil {
+		return x.Sub
+	}
+	return ""
+}
+
+func (x *AddRoleForSubInDomainReq) GetDomain() string {
+	if x != nil {
+		return x.Domain
+	}
+	return ""
+}
+
+func (x *AddRoleForSubInDomainReq) GetRole() string {
+	if x != nil {
+		return x.Role
+	}
+	return ""
+}
+
+type AddRoleForSubInDomainRpl struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Code uint32 `protobuf:"varint,1,opt,name=code,proto3" json:"code,omitempty"`
+	Msg  string `protobuf:"bytes,2,opt,name=msg,proto3" json:"msg,omitempty"`
+}
+
+func (x *AddRoleForSubInDomainRpl) Reset() {
+	*x = AddRoleForSubInDomainRpl{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_role_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddRoleForSubInDomainRpl) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddRoleForSubInDomainRpl) ProtoMessage() {}
+
+func (x *AddRoleForSubInDomainRpl) ProtoReflect() protoreflect.Message {
+	mi := &file_role_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddRoleForSubInDomainRpl.ProtoReflect.Descriptor instead.
+func (*AddRoleForSubInDomainRpl) Descriptor() ([]byte, []int) {
+	return file_role_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *AddRoleForSubInDomainRpl) GetCode() uint32 {
+	if x != nil {
+		return x.Code
+	}
+	return 0
+}
+
+func (x *AddRoleForSubInDomainRpl) GetMsg() string {
+	if x != nil {
+		return x.Msg
+	}
+	return ""
+}
+
+type GetDomainSubsForRoleReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	DomainName string `protobuf:"bytes,1,opt,name=domainName,proto3" json:"domainName,omitempty"`
+	RoleName   string `protobuf:"bytes,2,opt,name=roleName,proto3" json:"roleName,omitempty"`
+}
+
+func (x *GetDomainSubsForRoleReq) Reset() {
+	*x = GetDomainSubsForRoleReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_role_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetDomainSubsForRoleReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetDomainSubsForRoleReq) ProtoMessage() {}
+
+func (x *GetDomainSubsForRoleReq) ProtoReflect() protoreflect.Message {
+	mi := &file_role_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetDomainSubsForRoleReq.ProtoReflect.Descriptor instead.
+func (*GetDomainSubsForRoleReq) Descriptor() ([]byte, []int) {
+	return file_role_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *GetDomainSubsForRoleReq) GetDomainName() string {
+	if x != nil {
+		return x.DomainName
+	}
+	return ""
+}
+
+func (x *GetDomainSubsForRoleReq) GetRoleName() string {
+	if x != nil {
+		return x.RoleName
+	}
+	return ""
+}
+
+type GetDomainSubsForRoleRpl struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Code uint32                          `protobuf:"varint,1,opt,name=code,proto3" json:"code,omitempty"`
+	Msg  string                          `protobuf:"bytes,2,opt,name=msg,proto3" json:"msg,omitempty"`
+	Data []*GetDomainSubsForRoleRpl_Data `protobuf:"bytes,3,rep,name=data,proto3" json:"data,omitempty"`
+}
+
+func (x *GetDomainSubsForRoleRpl) Reset() {
+	*x = GetDomainSubsForRoleRpl{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_role_proto_msgTypes[11]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetDomainSubsForRoleRpl) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetDomainSubsForRoleRpl) ProtoMessage() {}
+
+func (x *GetDomainSubsForRoleRpl) ProtoReflect() protoreflect.Message {
+	mi := &file_role_proto_msgTypes[11]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetDomainSubsForRoleRpl.ProtoReflect.Descriptor instead.
+func (*GetDomainSubsForRoleRpl) Descriptor() ([]byte, []int) {
+	return file_role_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *GetDomainSubsForRoleRpl) GetCode() uint32 {
+	if x != nil {
+		return x.Code
+	}
+	return 0
+}
+
+func (x *GetDomainSubsForRoleRpl) GetMsg() string {
+	if x != nil {
+		return x.Msg
+	}
+	return ""
+}
+
+func (x *GetDomainSubsForRoleRpl) GetData() []*GetDomainSubsForRoleRpl_Data {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+type DeleteRoleForSubInDomainReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// eg: user:zhouzy1 or role:admin
+	Sub string `protobuf:"bytes,1,opt,name=sub,proto3" json:"sub,omitempty"`
+	// eg: domain:domain1
+	Domain string `protobuf:"bytes,2,opt,name=domain,proto3" json:"domain,omitempty"`
+	// eg: role:common
+	Role string `protobuf:"bytes,3,opt,name=role,proto3" json:"role,omitempty"`
+}
+
+func (x *DeleteRoleForSubInDomainReq) Reset() {
+	*x = DeleteRoleForSubInDomainReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_role_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteRoleForSubInDomainReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteRoleForSubInDomainReq) ProtoMessage() {}
+
+func (x *DeleteRoleForSubInDomainReq) ProtoReflect() protoreflect.Message {
+	mi := &file_role_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteRoleForSubInDomainReq.ProtoReflect.Descriptor instead.
+func (*DeleteRoleForSubInDomainReq) Descriptor() ([]byte, []int) {
+	return file_role_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *DeleteRoleForSubInDomainReq) GetSub() string {
+	if x != nil {
+		return x.Sub
+	}
+	return ""
+}
+
+func (x *DeleteRoleForSubInDomainReq) GetDomain() string {
+	if x != nil {
+		return x.Domain
+	}
+	return ""
+}
+
+func (x *DeleteRoleForSubInDomainReq) GetRole() string {
+	if x != nil {
+		return x.Role
+	}
+	return ""
+}
+
+type DeleteRoleForSubInDomainRpl struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Code uint32 `protobuf:"varint,1,opt,name=code,proto3" json:"code,omitempty"`
+	Msg  string `protobuf:"bytes,2,opt,name=msg,proto3" json:"msg,omitempty"`
+}
+
+func (x *DeleteRoleForSubInDomainRpl) Reset() {
+	*x = DeleteRoleForSubInDomainRpl{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_role_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteRoleForSubInDomainRpl) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteRoleForSubInDomainRpl) ProtoMessage() {}
+
+func (x *DeleteRoleForSubInDomainRpl) ProtoReflect() protoreflect.Message {
+	mi := &file_role_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteRoleForSubInDomainRpl.ProtoReflect.Descriptor instead.
+func (*DeleteRoleForSubInDomainRpl) Descriptor() ([]byte, []int) {
+	return file_role_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *DeleteRoleForSubInDomainRpl) GetCode() uint32 {
+	if x != nil {
+		return x.Code
+	}
+	return 0
+}
+
+func (x *DeleteRoleForSubInDomainRpl) GetMsg() string {
+	if x != nil {
+		return x.Msg
+	}
+	return ""
+}
+
 type AddDomainRoleRpl_Data struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -402,7 +872,7 @@ type AddDomainRoleRpl_Data struct {
 func (x *AddDomainRoleRpl_Data) Reset() {
 	*x = AddDomainRoleRpl_Data{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_role_proto_msgTypes[6]
+		mi := &file_role_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -415,7 +885,7 @@ func (x *AddDomainRoleRpl_Data) String() string {
 func (*AddDomainRoleRpl_Data) ProtoMessage() {}
 
 func (x *AddDomainRoleRpl_Data) ProtoReflect() protoreflect.Message {
-	mi := &file_role_proto_msgTypes[6]
+	mi := &file_role_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -473,7 +943,7 @@ type UpdateDomainRoleRpl_Data struct {
 func (x *UpdateDomainRoleRpl_Data) Reset() {
 	*x = UpdateDomainRoleRpl_Data{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_role_proto_msgTypes[7]
+		mi := &file_role_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -486,7 +956,7 @@ func (x *UpdateDomainRoleRpl_Data) String() string {
 func (*UpdateDomainRoleRpl_Data) ProtoMessage() {}
 
 func (x *UpdateDomainRoleRpl_Data) ProtoReflect() protoreflect.Message {
-	mi := &file_role_proto_msgTypes[7]
+	mi := &file_role_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -541,7 +1011,7 @@ type DeleteDomainRoleRpl_Data struct {
 func (x *DeleteDomainRoleRpl_Data) Reset() {
 	*x = DeleteDomainRoleRpl_Data{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_role_proto_msgTypes[8]
+		mi := &file_role_proto_msgTypes[16]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -554,7 +1024,7 @@ func (x *DeleteDomainRoleRpl_Data) String() string {
 func (*DeleteDomainRoleRpl_Data) ProtoMessage() {}
 
 func (x *DeleteDomainRoleRpl_Data) ProtoReflect() protoreflect.Message {
-	mi := &file_role_proto_msgTypes[8]
+	mi := &file_role_proto_msgTypes[16]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -575,6 +1045,132 @@ func (x *DeleteDomainRoleRpl_Data) GetDeleteTime() *timestamppb.Timestamp {
 		return x.DeleteTime
 	}
 	return nil
+}
+
+type GetAllRolesRpl_Data struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id         int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	CreateTime *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=createTime,proto3" json:"createTime,omitempty"`
+	UpdateTime *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=updateTime,proto3" json:"updateTime,omitempty"`
+	Name       string                 `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`
+	Domain     string                 `protobuf:"bytes,5,opt,name=domain,proto3" json:"domain,omitempty"`
+}
+
+func (x *GetAllRolesRpl_Data) Reset() {
+	*x = GetAllRolesRpl_Data{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_role_proto_msgTypes[17]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetAllRolesRpl_Data) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAllRolesRpl_Data) ProtoMessage() {}
+
+func (x *GetAllRolesRpl_Data) ProtoReflect() protoreflect.Message {
+	mi := &file_role_proto_msgTypes[17]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAllRolesRpl_Data.ProtoReflect.Descriptor instead.
+func (*GetAllRolesRpl_Data) Descriptor() ([]byte, []int) {
+	return file_role_proto_rawDescGZIP(), []int{7, 0}
+}
+
+func (x *GetAllRolesRpl_Data) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *GetAllRolesRpl_Data) GetCreateTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreateTime
+	}
+	return nil
+}
+
+func (x *GetAllRolesRpl_Data) GetUpdateTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.UpdateTime
+	}
+	return nil
+}
+
+func (x *GetAllRolesRpl_Data) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *GetAllRolesRpl_Data) GetDomain() string {
+	if x != nil {
+		return x.Domain
+	}
+	return ""
+}
+
+type GetDomainSubsForRoleRpl_Data struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Sub string `protobuf:"bytes,1,opt,name=sub,proto3" json:"sub,omitempty"`
+}
+
+func (x *GetDomainSubsForRoleRpl_Data) Reset() {
+	*x = GetDomainSubsForRoleRpl_Data{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_role_proto_msgTypes[18]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetDomainSubsForRoleRpl_Data) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetDomainSubsForRoleRpl_Data) ProtoMessage() {}
+
+func (x *GetDomainSubsForRoleRpl_Data) ProtoReflect() protoreflect.Message {
+	mi := &file_role_proto_msgTypes[18]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetDomainSubsForRoleRpl_Data.ProtoReflect.Descriptor instead.
+func (*GetDomainSubsForRoleRpl_Data) Descriptor() ([]byte, []int) {
+	return file_role_proto_rawDescGZIP(), []int{11, 0}
+}
+
+func (x *GetDomainSubsForRoleRpl_Data) GetSub() string {
+	if x != nil {
+		return x.Sub
+	}
+	return ""
 }
 
 var File_role_proto protoreflect.FileDescriptor
@@ -653,20 +1249,107 @@ var file_role_proto_rawDesc = []byte{
 	0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x54, 0x69, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b,
 	0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62,
 	0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52, 0x0a, 0x64, 0x65,
-	0x6c, 0x65, 0x74, 0x65, 0x54, 0x69, 0x6d, 0x65, 0x32, 0xbb, 0x01, 0x0a, 0x0a, 0x44, 0x6f, 0x6d,
-	0x61, 0x69, 0x6e, 0x52, 0x6f, 0x6c, 0x65, 0x12, 0x35, 0x0a, 0x0d, 0x41, 0x64, 0x64, 0x44, 0x6f,
-	0x6d, 0x61, 0x69, 0x6e, 0x52, 0x6f, 0x6c, 0x65, 0x12, 0x11, 0x2e, 0x41, 0x64, 0x64, 0x44, 0x6f,
-	0x6d, 0x61, 0x69, 0x6e, 0x52, 0x6f, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x1a, 0x11, 0x2e, 0x41, 0x64,
-	0x64, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x6f, 0x6c, 0x65, 0x52, 0x70, 0x6c, 0x12, 0x3c,
-	0x0a, 0x0e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x52, 0x6f, 0x6c, 0x65, 0x49, 0x6e, 0x66, 0x6f,
-	0x12, 0x14, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52,
-	0x6f, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x1a, 0x14, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x44,
-	0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x6f, 0x6c, 0x65, 0x52, 0x70, 0x6c, 0x12, 0x38, 0x0a, 0x0a,
-	0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x52, 0x6f, 0x6c, 0x65, 0x12, 0x14, 0x2e, 0x44, 0x65, 0x6c,
-	0x65, 0x74, 0x65, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x6f, 0x6c, 0x65, 0x52, 0x65, 0x71,
-	0x1a, 0x14, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52,
-	0x6f, 0x6c, 0x65, 0x52, 0x70, 0x6c, 0x42, 0x0b, 0x5a, 0x09, 0x2e, 0x2f, 0x2e, 0x3b, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x6c, 0x65, 0x74, 0x65, 0x54, 0x69, 0x6d, 0x65, 0x22, 0x4b, 0x0a, 0x0e, 0x47, 0x65, 0x74, 0x41,
+	0x6c, 0x6c, 0x52, 0x6f, 0x6c, 0x65, 0x73, 0x52, 0x65, 0x71, 0x12, 0x39, 0x0a, 0x0a, 0x64, 0x6f,
+	0x6d, 0x61, 0x69, 0x6e, 0x4e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x19,
+	0xfa, 0x42, 0x16, 0x72, 0x14, 0x32, 0x12, 0x5e, 0x5b, 0x30, 0x2d, 0x39, 0x61, 0x2d, 0x7a, 0x41,
+	0x2d, 0x5a, 0x5f, 0x5d, 0x7b, 0x31, 0x2c, 0x7d, 0x24, 0x52, 0x0a, 0x64, 0x6f, 0x6d, 0x61, 0x69,
+	0x6e, 0x4e, 0x61, 0x6d, 0x65, 0x22, 0x9d, 0x02, 0x0a, 0x0e, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x6c,
+	0x52, 0x6f, 0x6c, 0x65, 0x73, 0x52, 0x70, 0x6c, 0x12, 0x12, 0x0a, 0x04, 0x63, 0x6f, 0x64, 0x65,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x04, 0x63, 0x6f, 0x64, 0x65, 0x12, 0x10, 0x0a, 0x03,
+	0x6d, 0x73, 0x67, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6d, 0x73, 0x67, 0x12, 0x28,
+	0x0a, 0x04, 0x64, 0x61, 0x74, 0x61, 0x18, 0x03, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x47,
+	0x65, 0x74, 0x41, 0x6c, 0x6c, 0x52, 0x6f, 0x6c, 0x65, 0x73, 0x52, 0x70, 0x6c, 0x2e, 0x44, 0x61,
+	0x74, 0x61, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61, 0x1a, 0xba, 0x01, 0x0a, 0x04, 0x44, 0x61, 0x74,
+	0x61, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x02, 0x69,
+	0x64, 0x12, 0x3a, 0x0a, 0x0a, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x54, 0x69, 0x6d, 0x65, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d,
+	0x70, 0x52, 0x0a, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x54, 0x69, 0x6d, 0x65, 0x12, 0x3a, 0x0a,
+	0x0a, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x54, 0x69, 0x6d, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52, 0x0a, 0x75,
+	0x70, 0x64, 0x61, 0x74, 0x65, 0x54, 0x69, 0x6d, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d,
+	0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x16, 0x0a,
+	0x06, 0x64, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x64,
+	0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x22, 0x94, 0x01, 0x0a, 0x18, 0x41, 0x64, 0x64, 0x52, 0x6f, 0x6c,
+	0x65, 0x46, 0x6f, 0x72, 0x53, 0x75, 0x62, 0x49, 0x6e, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52,
+	0x65, 0x71, 0x12, 0x24, 0x0a, 0x03, 0x73, 0x75, 0x62, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42,
+	0x12, 0xfa, 0x42, 0x0f, 0x72, 0x0d, 0x32, 0x0b, 0x5e, 0x28, 0x2e, 0x2a, 0x29, 0x3a, 0x28, 0x2e,
+	0x2a, 0x29, 0x24, 0x52, 0x03, 0x73, 0x75, 0x62, 0x12, 0x2a, 0x0a, 0x06, 0x64, 0x6f, 0x6d, 0x61,
+	0x69, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x42, 0x12, 0xfa, 0x42, 0x0f, 0x72, 0x0d, 0x32,
+	0x0b, 0x5e, 0x28, 0x2e, 0x2a, 0x29, 0x3a, 0x28, 0x2e, 0x2a, 0x29, 0x24, 0x52, 0x06, 0x64, 0x6f,
+	0x6d, 0x61, 0x69, 0x6e, 0x12, 0x26, 0x0a, 0x04, 0x72, 0x6f, 0x6c, 0x65, 0x18, 0x03, 0x20, 0x01,
+	0x28, 0x09, 0x42, 0x12, 0xfa, 0x42, 0x0f, 0x72, 0x0d, 0x32, 0x0b, 0x5e, 0x28, 0x2e, 0x2a, 0x29,
+	0x3a, 0x28, 0x2e, 0x2a, 0x29, 0x24, 0x52, 0x04, 0x72, 0x6f, 0x6c, 0x65, 0x22, 0x40, 0x0a, 0x18,
+	0x41, 0x64, 0x64, 0x52, 0x6f, 0x6c, 0x65, 0x46, 0x6f, 0x72, 0x53, 0x75, 0x62, 0x49, 0x6e, 0x44,
+	0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x70, 0x6c, 0x12, 0x12, 0x0a, 0x04, 0x63, 0x6f, 0x64, 0x65,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x04, 0x63, 0x6f, 0x64, 0x65, 0x12, 0x10, 0x0a, 0x03,
+	0x6d, 0x73, 0x67, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6d, 0x73, 0x67, 0x22, 0x8b,
+	0x01, 0x0a, 0x17, 0x47, 0x65, 0x74, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x53, 0x75, 0x62, 0x73,
+	0x46, 0x6f, 0x72, 0x52, 0x6f, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x12, 0x39, 0x0a, 0x0a, 0x64, 0x6f,
+	0x6d, 0x61, 0x69, 0x6e, 0x4e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x19,
+	0xfa, 0x42, 0x16, 0x72, 0x14, 0x32, 0x12, 0x5e, 0x5b, 0x30, 0x2d, 0x39, 0x61, 0x2d, 0x7a, 0x41,
+	0x2d, 0x5a, 0x5f, 0x5d, 0x7b, 0x31, 0x2c, 0x7d, 0x24, 0x52, 0x0a, 0x64, 0x6f, 0x6d, 0x61, 0x69,
+	0x6e, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x35, 0x0a, 0x08, 0x72, 0x6f, 0x6c, 0x65, 0x4e, 0x61, 0x6d,
+	0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x42, 0x19, 0xfa, 0x42, 0x16, 0x72, 0x14, 0x32, 0x12,
+	0x5e, 0x5b, 0x30, 0x2d, 0x39, 0x61, 0x2d, 0x7a, 0x41, 0x2d, 0x5a, 0x5f, 0x5d, 0x7b, 0x31, 0x2c,
+	0x7d, 0x24, 0x52, 0x08, 0x72, 0x6f, 0x6c, 0x65, 0x4e, 0x61, 0x6d, 0x65, 0x22, 0x8c, 0x01, 0x0a,
+	0x17, 0x47, 0x65, 0x74, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x53, 0x75, 0x62, 0x73, 0x46, 0x6f,
+	0x72, 0x52, 0x6f, 0x6c, 0x65, 0x52, 0x70, 0x6c, 0x12, 0x12, 0x0a, 0x04, 0x63, 0x6f, 0x64, 0x65,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x04, 0x63, 0x6f, 0x64, 0x65, 0x12, 0x10, 0x0a, 0x03,
+	0x6d, 0x73, 0x67, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6d, 0x73, 0x67, 0x12, 0x31,
+	0x0a, 0x04, 0x64, 0x61, 0x74, 0x61, 0x18, 0x03, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1d, 0x2e, 0x47,
+	0x65, 0x74, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x53, 0x75, 0x62, 0x73, 0x46, 0x6f, 0x72, 0x52,
+	0x6f, 0x6c, 0x65, 0x52, 0x70, 0x6c, 0x2e, 0x44, 0x61, 0x74, 0x61, 0x52, 0x04, 0x64, 0x61, 0x74,
+	0x61, 0x1a, 0x18, 0x0a, 0x04, 0x44, 0x61, 0x74, 0x61, 0x12, 0x10, 0x0a, 0x03, 0x73, 0x75, 0x62,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x73, 0x75, 0x62, 0x22, 0x97, 0x01, 0x0a, 0x1b,
+	0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x52, 0x6f, 0x6c, 0x65, 0x46, 0x6f, 0x72, 0x53, 0x75, 0x62,
+	0x49, 0x6e, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x12, 0x24, 0x0a, 0x03, 0x73,
+	0x75, 0x62, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x12, 0xfa, 0x42, 0x0f, 0x72, 0x0d, 0x32,
+	0x0b, 0x5e, 0x28, 0x2e, 0x2a, 0x29, 0x3a, 0x28, 0x2e, 0x2a, 0x29, 0x24, 0x52, 0x03, 0x73, 0x75,
+	0x62, 0x12, 0x2a, 0x0a, 0x06, 0x64, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x09, 0x42, 0x12, 0xfa, 0x42, 0x0f, 0x72, 0x0d, 0x32, 0x0b, 0x5e, 0x28, 0x2e, 0x2a, 0x29, 0x3a,
+	0x28, 0x2e, 0x2a, 0x29, 0x24, 0x52, 0x06, 0x64, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x12, 0x26, 0x0a,
+	0x04, 0x72, 0x6f, 0x6c, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x42, 0x12, 0xfa, 0x42, 0x0f,
+	0x72, 0x0d, 0x32, 0x0b, 0x5e, 0x28, 0x2e, 0x2a, 0x29, 0x3a, 0x28, 0x2e, 0x2a, 0x29, 0x24, 0x52,
+	0x04, 0x72, 0x6f, 0x6c, 0x65, 0x22, 0x43, 0x0a, 0x1b, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x52,
+	0x6f, 0x6c, 0x65, 0x46, 0x6f, 0x72, 0x53, 0x75, 0x62, 0x49, 0x6e, 0x44, 0x6f, 0x6d, 0x61, 0x69,
+	0x6e, 0x52, 0x70, 0x6c, 0x12, 0x12, 0x0a, 0x04, 0x63, 0x6f, 0x64, 0x65, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x0d, 0x52, 0x04, 0x63, 0x6f, 0x64, 0x65, 0x12, 0x10, 0x0a, 0x03, 0x6d, 0x73, 0x67, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6d, 0x73, 0x67, 0x32, 0xe2, 0x03, 0x0a, 0x0a, 0x44,
+	0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x6f, 0x6c, 0x65, 0x12, 0x35, 0x0a, 0x0d, 0x41, 0x64, 0x64,
+	0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x6f, 0x6c, 0x65, 0x12, 0x11, 0x2e, 0x41, 0x64, 0x64,
+	0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x6f, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x1a, 0x11, 0x2e,
+	0x41, 0x64, 0x64, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x6f, 0x6c, 0x65, 0x52, 0x70, 0x6c,
+	0x12, 0x3c, 0x0a, 0x0e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x52, 0x6f, 0x6c, 0x65, 0x49, 0x6e,
+	0x66, 0x6f, 0x12, 0x14, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x44, 0x6f, 0x6d, 0x61, 0x69,
+	0x6e, 0x52, 0x6f, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x1a, 0x14, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74,
+	0x65, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x6f, 0x6c, 0x65, 0x52, 0x70, 0x6c, 0x12, 0x38,
+	0x0a, 0x0a, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x52, 0x6f, 0x6c, 0x65, 0x12, 0x14, 0x2e, 0x44,
+	0x65, 0x6c, 0x65, 0x74, 0x65, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x6f, 0x6c, 0x65, 0x52,
+	0x65, 0x71, 0x1a, 0x14, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x44, 0x6f, 0x6d, 0x61, 0x69,
+	0x6e, 0x52, 0x6f, 0x6c, 0x65, 0x52, 0x70, 0x6c, 0x12, 0x32, 0x0a, 0x0e, 0x47, 0x65, 0x74, 0x44,
+	0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x6f, 0x6c, 0x65, 0x73, 0x12, 0x0f, 0x2e, 0x47, 0x65, 0x74,
+	0x41, 0x6c, 0x6c, 0x52, 0x6f, 0x6c, 0x65, 0x73, 0x52, 0x65, 0x71, 0x1a, 0x0f, 0x2e, 0x47, 0x65,
+	0x74, 0x41, 0x6c, 0x6c, 0x52, 0x6f, 0x6c, 0x65, 0x73, 0x52, 0x70, 0x6c, 0x12, 0x4a, 0x0a, 0x14,
+	0x47, 0x65, 0x74, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x53, 0x75, 0x62, 0x73, 0x46, 0x6f, 0x72,
+	0x52, 0x6f, 0x6c, 0x65, 0x12, 0x18, 0x2e, 0x47, 0x65, 0x74, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e,
+	0x53, 0x75, 0x62, 0x73, 0x46, 0x6f, 0x72, 0x52, 0x6f, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x1a, 0x18,
+	0x2e, 0x47, 0x65, 0x74, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x53, 0x75, 0x62, 0x73, 0x46, 0x6f,
+	0x72, 0x52, 0x6f, 0x6c, 0x65, 0x52, 0x70, 0x6c, 0x12, 0x4d, 0x0a, 0x15, 0x41, 0x64, 0x64, 0x52,
+	0x6f, 0x6c, 0x65, 0x46, 0x6f, 0x72, 0x53, 0x75, 0x62, 0x49, 0x6e, 0x44, 0x6f, 0x6d, 0x61, 0x69,
+	0x6e, 0x12, 0x19, 0x2e, 0x41, 0x64, 0x64, 0x52, 0x6f, 0x6c, 0x65, 0x46, 0x6f, 0x72, 0x53, 0x75,
+	0x62, 0x49, 0x6e, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x1a, 0x19, 0x2e, 0x41,
+	0x64, 0x64, 0x52, 0x6f, 0x6c, 0x65, 0x46, 0x6f, 0x72, 0x53, 0x75, 0x62, 0x49, 0x6e, 0x44, 0x6f,
+	0x6d, 0x61, 0x69, 0x6e, 0x52, 0x70, 0x6c, 0x12, 0x56, 0x0a, 0x18, 0x44, 0x65, 0x6c, 0x65, 0x74,
+	0x65, 0x52, 0x6f, 0x6c, 0x65, 0x46, 0x6f, 0x72, 0x53, 0x75, 0x62, 0x49, 0x6e, 0x44, 0x6f, 0x6d,
+	0x61, 0x69, 0x6e, 0x12, 0x1c, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x52, 0x6f, 0x6c, 0x65,
+	0x46, 0x6f, 0x72, 0x53, 0x75, 0x62, 0x49, 0x6e, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x65,
+	0x71, 0x1a, 0x1c, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x52, 0x6f, 0x6c, 0x65, 0x46, 0x6f,
+	0x72, 0x53, 0x75, 0x62, 0x49, 0x6e, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x70, 0x6c, 0x42,
+	0x0b, 0x5a, 0x09, 0x2e, 0x2f, 0x2e, 0x3b, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x06, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -681,37 +1364,59 @@ func file_role_proto_rawDescGZIP() []byte {
 	return file_role_proto_rawDescData
 }
 
-var file_role_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_role_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
 var file_role_proto_goTypes = []interface{}{
-	(*AddDomainRoleReq)(nil),         // 0: AddDomainRoleReq
-	(*AddDomainRoleRpl)(nil),         // 1: AddDomainRoleRpl
-	(*UpdateDomainRoleReq)(nil),      // 2: UpdateDomainRoleReq
-	(*UpdateDomainRoleRpl)(nil),      // 3: UpdateDomainRoleRpl
-	(*DeleteDomainRoleReq)(nil),      // 4: DeleteDomainRoleReq
-	(*DeleteDomainRoleRpl)(nil),      // 5: DeleteDomainRoleRpl
-	(*AddDomainRoleRpl_Data)(nil),    // 6: AddDomainRoleRpl.Data
-	(*UpdateDomainRoleRpl_Data)(nil), // 7: UpdateDomainRoleRpl.Data
-	(*DeleteDomainRoleRpl_Data)(nil), // 8: DeleteDomainRoleRpl.Data
-	(*timestamppb.Timestamp)(nil),    // 9: google.protobuf.Timestamp
+	(*AddDomainRoleReq)(nil),             // 0: AddDomainRoleReq
+	(*AddDomainRoleRpl)(nil),             // 1: AddDomainRoleRpl
+	(*UpdateDomainRoleReq)(nil),          // 2: UpdateDomainRoleReq
+	(*UpdateDomainRoleRpl)(nil),          // 3: UpdateDomainRoleRpl
+	(*DeleteDomainRoleReq)(nil),          // 4: DeleteDomainRoleReq
+	(*DeleteDomainRoleRpl)(nil),          // 5: DeleteDomainRoleRpl
+	(*GetAllRolesReq)(nil),               // 6: GetAllRolesReq
+	(*GetAllRolesRpl)(nil),               // 7: GetAllRolesRpl
+	(*AddRoleForSubInDomainReq)(nil),     // 8: AddRoleForSubInDomainReq
+	(*AddRoleForSubInDomainRpl)(nil),     // 9: AddRoleForSubInDomainRpl
+	(*GetDomainSubsForRoleReq)(nil),      // 10: GetDomainSubsForRoleReq
+	(*GetDomainSubsForRoleRpl)(nil),      // 11: GetDomainSubsForRoleRpl
+	(*DeleteRoleForSubInDomainReq)(nil),  // 12: DeleteRoleForSubInDomainReq
+	(*DeleteRoleForSubInDomainRpl)(nil),  // 13: DeleteRoleForSubInDomainRpl
+	(*AddDomainRoleRpl_Data)(nil),        // 14: AddDomainRoleRpl.Data
+	(*UpdateDomainRoleRpl_Data)(nil),     // 15: UpdateDomainRoleRpl.Data
+	(*DeleteDomainRoleRpl_Data)(nil),     // 16: DeleteDomainRoleRpl.Data
+	(*GetAllRolesRpl_Data)(nil),          // 17: GetAllRolesRpl.Data
+	(*GetDomainSubsForRoleRpl_Data)(nil), // 18: GetDomainSubsForRoleRpl.Data
+	(*timestamppb.Timestamp)(nil),        // 19: google.protobuf.Timestamp
 }
 var file_role_proto_depIdxs = []int32{
-	6, // 0: AddDomainRoleRpl.data:type_name -> AddDomainRoleRpl.Data
-	7, // 1: UpdateDomainRoleRpl.data:type_name -> UpdateDomainRoleRpl.Data
-	8, // 2: DeleteDomainRoleRpl.data:type_name -> DeleteDomainRoleRpl.Data
-	9, // 3: AddDomainRoleRpl.Data.creatTime:type_name -> google.protobuf.Timestamp
-	9, // 4: UpdateDomainRoleRpl.Data.updateTime:type_name -> google.protobuf.Timestamp
-	9, // 5: DeleteDomainRoleRpl.Data.deleteTime:type_name -> google.protobuf.Timestamp
-	0, // 6: DomainRole.AddDomainRole:input_type -> AddDomainRoleReq
-	2, // 7: DomainRole.UpdateRoleInfo:input_type -> UpdateDomainRoleReq
-	4, // 8: DomainRole.DeleteRole:input_type -> DeleteDomainRoleReq
-	1, // 9: DomainRole.AddDomainRole:output_type -> AddDomainRoleRpl
-	3, // 10: DomainRole.UpdateRoleInfo:output_type -> UpdateDomainRoleRpl
-	5, // 11: DomainRole.DeleteRole:output_type -> DeleteDomainRoleRpl
-	9, // [9:12] is the sub-list for method output_type
-	6, // [6:9] is the sub-list for method input_type
-	6, // [6:6] is the sub-list for extension type_name
-	6, // [6:6] is the sub-list for extension extendee
-	0, // [0:6] is the sub-list for field type_name
+	14, // 0: AddDomainRoleRpl.data:type_name -> AddDomainRoleRpl.Data
+	15, // 1: UpdateDomainRoleRpl.data:type_name -> UpdateDomainRoleRpl.Data
+	16, // 2: DeleteDomainRoleRpl.data:type_name -> DeleteDomainRoleRpl.Data
+	17, // 3: GetAllRolesRpl.data:type_name -> GetAllRolesRpl.Data
+	18, // 4: GetDomainSubsForRoleRpl.data:type_name -> GetDomainSubsForRoleRpl.Data
+	19, // 5: AddDomainRoleRpl.Data.creatTime:type_name -> google.protobuf.Timestamp
+	19, // 6: UpdateDomainRoleRpl.Data.updateTime:type_name -> google.protobuf.Timestamp
+	19, // 7: DeleteDomainRoleRpl.Data.deleteTime:type_name -> google.protobuf.Timestamp
+	19, // 8: GetAllRolesRpl.Data.createTime:type_name -> google.protobuf.Timestamp
+	19, // 9: GetAllRolesRpl.Data.updateTime:type_name -> google.protobuf.Timestamp
+	0,  // 10: DomainRole.AddDomainRole:input_type -> AddDomainRoleReq
+	2,  // 11: DomainRole.UpdateRoleInfo:input_type -> UpdateDomainRoleReq
+	4,  // 12: DomainRole.DeleteRole:input_type -> DeleteDomainRoleReq
+	6,  // 13: DomainRole.GetDomainRoles:input_type -> GetAllRolesReq
+	10, // 14: DomainRole.GetDomainSubsForRole:input_type -> GetDomainSubsForRoleReq
+	8,  // 15: DomainRole.AddRoleForSubInDomain:input_type -> AddRoleForSubInDomainReq
+	12, // 16: DomainRole.DeleteRoleForSubInDomain:input_type -> DeleteRoleForSubInDomainReq
+	1,  // 17: DomainRole.AddDomainRole:output_type -> AddDomainRoleRpl
+	3,  // 18: DomainRole.UpdateRoleInfo:output_type -> UpdateDomainRoleRpl
+	5,  // 19: DomainRole.DeleteRole:output_type -> DeleteDomainRoleRpl
+	7,  // 20: DomainRole.GetDomainRoles:output_type -> GetAllRolesRpl
+	11, // 21: DomainRole.GetDomainSubsForRole:output_type -> GetDomainSubsForRoleRpl
+	9,  // 22: DomainRole.AddRoleForSubInDomain:output_type -> AddRoleForSubInDomainRpl
+	13, // 23: DomainRole.DeleteRoleForSubInDomain:output_type -> DeleteRoleForSubInDomainRpl
+	17, // [17:24] is the sub-list for method output_type
+	10, // [10:17] is the sub-list for method input_type
+	10, // [10:10] is the sub-list for extension type_name
+	10, // [10:10] is the sub-list for extension extendee
+	0,  // [0:10] is the sub-list for field type_name
 }
 
 func init() { file_role_proto_init() }
@@ -793,7 +1498,7 @@ func file_role_proto_init() {
 			}
 		}
 		file_role_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*AddDomainRoleRpl_Data); i {
+			switch v := v.(*GetAllRolesReq); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -805,7 +1510,7 @@ func file_role_proto_init() {
 			}
 		}
 		file_role_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateDomainRoleRpl_Data); i {
+			switch v := v.(*GetAllRolesRpl); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -817,7 +1522,127 @@ func file_role_proto_init() {
 			}
 		}
 		file_role_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddRoleForSubInDomainReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_role_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddRoleForSubInDomainRpl); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_role_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetDomainSubsForRoleReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_role_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetDomainSubsForRoleRpl); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_role_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteRoleForSubInDomainReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_role_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteRoleForSubInDomainRpl); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_role_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddDomainRoleRpl_Data); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_role_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateDomainRoleRpl_Data); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_role_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DeleteDomainRoleRpl_Data); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_role_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetAllRolesRpl_Data); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_role_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetDomainSubsForRoleRpl_Data); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -835,7 +1660,7 @@ func file_role_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_role_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   9,
+			NumMessages:   19,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -867,6 +1692,14 @@ type DomainRoleClient interface {
 	UpdateRoleInfo(ctx context.Context, in *UpdateDomainRoleReq, opts ...grpc.CallOption) (*UpdateDomainRoleRpl, error)
 	// DeleteRole 删除对应域的角色
 	DeleteRole(ctx context.Context, in *DeleteDomainRoleReq, opts ...grpc.CallOption) (*DeleteDomainRoleRpl, error)
+	// GetDomainRoles 获取指定域下所有角色
+	GetDomainRoles(ctx context.Context, in *GetAllRolesReq, opts ...grpc.CallOption) (*GetAllRolesRpl, error)
+	// GetDomainSubsForRole 获取指定域角色下所有用户
+	GetDomainSubsForRole(ctx context.Context, in *GetDomainSubsForRoleReq, opts ...grpc.CallOption) (*GetDomainSubsForRoleRpl, error)
+	// AddRoleForSubInDomain 为用户添加域角色或者为角色继承另一个角色权限
+	AddRoleForSubInDomain(ctx context.Context, in *AddRoleForSubInDomainReq, opts ...grpc.CallOption) (*AddRoleForSubInDomainRpl, error)
+	// DeleteRoleForSubInDomain 删除角色下subject（鉴权主体）
+	DeleteRoleForSubInDomain(ctx context.Context, in *DeleteRoleForSubInDomainReq, opts ...grpc.CallOption) (*DeleteRoleForSubInDomainRpl, error)
 }
 
 type domainRoleClient struct {
@@ -904,6 +1737,42 @@ func (c *domainRoleClient) DeleteRole(ctx context.Context, in *DeleteDomainRoleR
 	return out, nil
 }
 
+func (c *domainRoleClient) GetDomainRoles(ctx context.Context, in *GetAllRolesReq, opts ...grpc.CallOption) (*GetAllRolesRpl, error) {
+	out := new(GetAllRolesRpl)
+	err := c.cc.Invoke(ctx, "/DomainRole/GetDomainRoles", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *domainRoleClient) GetDomainSubsForRole(ctx context.Context, in *GetDomainSubsForRoleReq, opts ...grpc.CallOption) (*GetDomainSubsForRoleRpl, error) {
+	out := new(GetDomainSubsForRoleRpl)
+	err := c.cc.Invoke(ctx, "/DomainRole/GetDomainSubsForRole", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *domainRoleClient) AddRoleForSubInDomain(ctx context.Context, in *AddRoleForSubInDomainReq, opts ...grpc.CallOption) (*AddRoleForSubInDomainRpl, error) {
+	out := new(AddRoleForSubInDomainRpl)
+	err := c.cc.Invoke(ctx, "/DomainRole/AddRoleForSubInDomain", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *domainRoleClient) DeleteRoleForSubInDomain(ctx context.Context, in *DeleteRoleForSubInDomainReq, opts ...grpc.CallOption) (*DeleteRoleForSubInDomainRpl, error) {
+	out := new(DeleteRoleForSubInDomainRpl)
+	err := c.cc.Invoke(ctx, "/DomainRole/DeleteRoleForSubInDomain", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DomainRoleServer is the server API for DomainRole service.
 type DomainRoleServer interface {
 	// 添加域角色
@@ -912,6 +1781,14 @@ type DomainRoleServer interface {
 	UpdateRoleInfo(context.Context, *UpdateDomainRoleReq) (*UpdateDomainRoleRpl, error)
 	// DeleteRole 删除对应域的角色
 	DeleteRole(context.Context, *DeleteDomainRoleReq) (*DeleteDomainRoleRpl, error)
+	// GetDomainRoles 获取指定域下所有角色
+	GetDomainRoles(context.Context, *GetAllRolesReq) (*GetAllRolesRpl, error)
+	// GetDomainSubsForRole 获取指定域角色下所有用户
+	GetDomainSubsForRole(context.Context, *GetDomainSubsForRoleReq) (*GetDomainSubsForRoleRpl, error)
+	// AddRoleForSubInDomain 为用户添加域角色或者为角色继承另一个角色权限
+	AddRoleForSubInDomain(context.Context, *AddRoleForSubInDomainReq) (*AddRoleForSubInDomainRpl, error)
+	// DeleteRoleForSubInDomain 删除角色下subject（鉴权主体）
+	DeleteRoleForSubInDomain(context.Context, *DeleteRoleForSubInDomainReq) (*DeleteRoleForSubInDomainRpl, error)
 }
 
 // UnimplementedDomainRoleServer can be embedded to have forward compatible implementations.
@@ -926,6 +1803,18 @@ func (*UnimplementedDomainRoleServer) UpdateRoleInfo(context.Context, *UpdateDom
 }
 func (*UnimplementedDomainRoleServer) DeleteRole(context.Context, *DeleteDomainRoleReq) (*DeleteDomainRoleRpl, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteRole not implemented")
+}
+func (*UnimplementedDomainRoleServer) GetDomainRoles(context.Context, *GetAllRolesReq) (*GetAllRolesRpl, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDomainRoles not implemented")
+}
+func (*UnimplementedDomainRoleServer) GetDomainSubsForRole(context.Context, *GetDomainSubsForRoleReq) (*GetDomainSubsForRoleRpl, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDomainSubsForRole not implemented")
+}
+func (*UnimplementedDomainRoleServer) AddRoleForSubInDomain(context.Context, *AddRoleForSubInDomainReq) (*AddRoleForSubInDomainRpl, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddRoleForSubInDomain not implemented")
+}
+func (*UnimplementedDomainRoleServer) DeleteRoleForSubInDomain(context.Context, *DeleteRoleForSubInDomainReq) (*DeleteRoleForSubInDomainRpl, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteRoleForSubInDomain not implemented")
 }
 
 func RegisterDomainRoleServer(s *grpc.Server, srv DomainRoleServer) {
@@ -986,6 +1875,78 @@ func _DomainRole_DeleteRole_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DomainRole_GetDomainRoles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAllRolesReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DomainRoleServer).GetDomainRoles(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/DomainRole/GetDomainRoles",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DomainRoleServer).GetDomainRoles(ctx, req.(*GetAllRolesReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DomainRole_GetDomainSubsForRole_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetDomainSubsForRoleReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DomainRoleServer).GetDomainSubsForRole(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/DomainRole/GetDomainSubsForRole",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DomainRoleServer).GetDomainSubsForRole(ctx, req.(*GetDomainSubsForRoleReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DomainRole_AddRoleForSubInDomain_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddRoleForSubInDomainReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DomainRoleServer).AddRoleForSubInDomain(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/DomainRole/AddRoleForSubInDomain",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DomainRoleServer).AddRoleForSubInDomain(ctx, req.(*AddRoleForSubInDomainReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DomainRole_DeleteRoleForSubInDomain_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteRoleForSubInDomainReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DomainRoleServer).DeleteRoleForSubInDomain(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/DomainRole/DeleteRoleForSubInDomain",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DomainRoleServer).DeleteRoleForSubInDomain(ctx, req.(*DeleteRoleForSubInDomainReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _DomainRole_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "DomainRole",
 	HandlerType: (*DomainRoleServer)(nil),
@@ -1001,6 +1962,22 @@ var _DomainRole_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteRole",
 			Handler:    _DomainRole_DeleteRole_Handler,
+		},
+		{
+			MethodName: "GetDomainRoles",
+			Handler:    _DomainRole_GetDomainRoles_Handler,
+		},
+		{
+			MethodName: "GetDomainSubsForRole",
+			Handler:    _DomainRole_GetDomainSubsForRole_Handler,
+		},
+		{
+			MethodName: "AddRoleForSubInDomain",
+			Handler:    _DomainRole_AddRoleForSubInDomain_Handler,
+		},
+		{
+			MethodName: "DeleteRoleForSubInDomain",
+			Handler:    _DomainRole_DeleteRoleForSubInDomain_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

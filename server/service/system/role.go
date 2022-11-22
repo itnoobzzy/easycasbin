@@ -80,7 +80,7 @@ func (rs *RoleService) GetDomainRoles(form *forms.GetAllRoles) (roles []models.R
 }
 
 // GetDomainSubsForRole 获取指定域角色下所有用户
-func (rs *RoleService) GetDomainSubsForRole(form *forms.DomainRole) (roles interface{}) {
+func (rs *RoleService) GetDomainSubsForRole(form *forms.DomainRole) (roles []string) {
 	role := "role:" + form.RoleName
 	domain := "domain:" + form.DomainName
 	subs, _ := global.CASBIN_ENFORCER.GetImplicitUsersForRole(role, domain)
