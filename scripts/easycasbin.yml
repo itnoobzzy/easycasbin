@@ -1,0 +1,20 @@
+version: '2.1'
+
+services:
+  webserver:
+    image: itnoobzzy/easycasbin:1.0
+    container_name: easycasbin
+    restart: always
+    ports:
+      - 8888:8080
+    hostname: dqc_01
+    volumes:
+      - /data/app/easycasbin:/data/easycasbin
+      - /etc/hosts:/etc/hosts
+    command:
+      cd /data/easycasbin/server && ./main
+    networks:
+      - easycasbin
+networks:
+  easycasbin:
+    external: true
