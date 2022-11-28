@@ -12,7 +12,11 @@ services:
       - /data/app/easycasbin:/data/easycasbin
       - /etc/hosts:/etc/hosts
     command:
-      go run main.go
+      - /bin/sh
+      - -c
+      - |
+        `go mod tidy`
+        `go run main.go`
     networks:
       - easycasbin
 networks:
