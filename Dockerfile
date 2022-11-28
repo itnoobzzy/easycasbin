@@ -1,7 +1,15 @@
-FROM golang:1.19.3-alpine
+FROM golang:1.19
 
-ENV GOPROXY https://goproxy.cn,direct
-WORKDIR /data
+ENV GO111MODULE on
+
+WORKDIR /app/easycasbin
+
 COPY . .
 
-EXPOSE 8000
+RUN go mod download
+
+RUN go build -o /easycasbin
+
+EXPOSE 8080
+CMD ["/easycasbin"]
+
