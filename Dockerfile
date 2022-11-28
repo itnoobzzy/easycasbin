@@ -8,6 +8,7 @@ COPY go.mod ./
 COPY go.sum ./
 
 RUN go mod download
+RUN go mod tidy
 
 EXPOSE 8080
 
