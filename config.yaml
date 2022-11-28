@@ -72,7 +72,7 @@ mysql:
     path: rm-d9j981yjreg981qo1.mysql.ap-southeast-5.rds.aliyuncs.com
     port: "3306"
     config: charset=utf8mb4&parseTime=True&loc=Local
-    db-name: easycasbin
+    db-name: landsat
     username: bnc_test_rw
     password: kJFrt7jf8ekdr
     max-idle-conns: 10
