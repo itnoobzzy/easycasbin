@@ -69,12 +69,12 @@ local:
     path: ""
     store-path: ""
 mysql:
-    path: rm-3nsc58907o3epw2me.mysql.rds.aliyuncs.com
+    path: rm-d9j981yjreg981qo1.mysql.ap-southeast-5.rds.aliyuncs.com
     port: "3306"
     config: charset=utf8mb4&parseTime=True&loc=Local
     db-name: easycasbin
-    username: dbadmin
-    password: hE4sqSfuCQeXEXwz
+    username: bnc_test_rw
+    password: kJFrt7jf8ekdr
     max-idle-conns: 10
     max-open-conns: 100
     log-mode: error
@@ -100,7 +100,7 @@ qiniu:
     use-cdn-domains: false
 redis:
     db: 4
-    addr: r-3ns20c32d1acd834.redis.rds.aliyuncs.com:6379
+    addr: r-d9jwupqug0rv2qlju9.redis.ap-southeast-5.rds.aliyuncs.com:6379
     password: IyY1NA3Zre76542M
 system:
     env: public
