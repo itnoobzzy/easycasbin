@@ -8,8 +8,6 @@ COPY . .
 
 RUN go mod download
 
-RUN go build -o /easycasbin
-
 EXPOSE 8080
-CMD ["/easycasbin"]
+
 
