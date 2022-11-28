@@ -4,11 +4,9 @@ ENV GO111MODULE on
 
 WORKDIR /data/easycasbin
 
-COPY go.mod ./
-COPY go.sum ./
+COPY . .
 
 RUN go mod download
-RUN go mod tidy
 
 EXPOSE 8080
 
