@@ -104,7 +104,7 @@ redis:
     password: IyY1NA3Zre76542M
 system:
     env: public
-    addr: 8888
+    addr: 8080
     db-type: mysql
     oss-type: local
     use-multipoint: false
