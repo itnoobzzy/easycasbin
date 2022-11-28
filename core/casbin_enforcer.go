@@ -21,7 +21,7 @@ var (
 func CachedEnforcer() (enforcer *casbin.CachedEnforcer) {
 	once.Do(func() {
 		a, _ := gormadapter.NewAdapterByDB(global.CASBIN_DB)
-		m, err := model.NewModelFromFile("./server/casbin_rbac_domain.conf")
+		m, err := model.NewModelFromFile("./casbin_rbac_domain.conf")
 		if err != nil {
 			zap.L().Error("casbin model load failed!", zap.Error(err))
 		}

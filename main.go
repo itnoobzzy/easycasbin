@@ -14,7 +14,7 @@ func main() {
 	global.CASBIN_LOG = core.Zap()
 	zap.ReplaceGlobals(global.CASBIN_LOG)
 	global.CASBIN_DB = initialize.Gorm()
-	global.CASBIN_ENFORCER = core.Enforcer("./server/casbin_rbac_domain.conf")
+	global.CASBIN_ENFORCER = core.Enforcer("casbin_rbac_domain.conf")
 	initialize.DBList()
 	// 初始化表单校验翻译器
 	err := initialize.InitTrans("zh")
