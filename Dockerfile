@@ -2,7 +2,7 @@ FROM golang:1.19
 
 ENV GO111MODULE on
 
-WORKDIR /app/easycasbin
+WORKDIR /data/easycasbin
 
 COPY go.mod ./
 COPY go.sum ./
