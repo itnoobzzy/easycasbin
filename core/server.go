@@ -24,8 +24,7 @@ func RunWindowsServer() {
 	}
 	Router := initialize.Routers()
 	address := fmt.Sprintf(":%d", global.CASBIN_CONFIG.System.Addr)
-	s := initServer(address, Router)
+	Router.Run(address)
 	time.Sleep(10 * time.Microsecond)
 	global.CASBIN_LOG.Info("server run success on ", zap.String("address", address))
-	global.CASBIN_LOG.Error(s.ListenAndServe().Error())
 }
