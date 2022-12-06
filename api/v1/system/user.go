@@ -20,10 +20,10 @@ func (ua *UserApi) Login(c *gin.Context) {
 		response.FailWithMessage(err, c)
 		return
 	}
-	if err := utils.Verify(loginForm, utils.LoginVerify); err != nil {
-		response.FailWithMessage(err.Error(), c)
-		return
-	}
+	//if err := utils.Verify(loginForm, utils.LoginVerify); err != nil {
+	//	response.FailWithMessage(err.Error(), c)
+	//	return
+	//}
 
 	u := &models.User{Username: loginForm.Username, Password: loginForm.Password}
 	if user, err := userService.Login(u); err != nil {

@@ -1,10 +1,37 @@
 package models
 
 import (
+	"database/sql/driver"
 	"easycasbin/global"
+	"fmt"
 	"gorm.io/gorm"
 	"time"
 )
+
+type LocalTime time.Time
+
+func (t *LocalTime) MarshalJSON() ([]byte, error) {
+	tTime := time.Time(*t)
+	return []byte(fmt.Sprintf("\"%v\"", tTime.Format("2006-01-02 15:04:05"))), nil
+}
+
+func (t LocalTime) Value() (driver.Value, error) {
+	var zeroTime time.Time
+	tlt := time.Time(t)
+	//判断给定时间是否和默认零时间的时间戳相同
+	if tlt.UnixNano() == zeroTime.UnixNano() {
+		return nil, nil
+	}
+	return tlt, nil
+}
+
+func (t *LocalTime) Scan(v interface{}) error {
+	if value, ok := v.(time.Time); ok {
+		*t = LocalTime(value)
+		return nil
+	}
+	return fmt.Errorf("can not convert %v to timestamp", v)
+}
 
 type User struct {
 	gorm.Model
@@ -14,7 +41,7 @@ type User struct {
 	Password       string      `json:"password" gorm:"comment:密码"`
 	Active         int         `json:"active" gorm:"type:tinyint(1);not null;comment:是否激活"`
 	Email          string      `json:"email" gorm:"type:text;comment:邮箱"`
-	LastLogin      time.Time   `json:"last_login" gorm:"type:time;comment:last_login"`
+	LastLogin      *LocalTime  `json:"last_login" gorm:"type:time;comment:last_login"`
 	LoginCount     int         `json:"login_count" gorm:"size:11;comment:login_count"`
 	FailLoginCount int         `json:"fail_login_count" gorm:"size:11;comment:fail_login_count"`
 	Params         global.JSON `json:"params" gorm:"type:json;serializer:json"`
