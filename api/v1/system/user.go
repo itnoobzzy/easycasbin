@@ -20,11 +20,6 @@ func (ua *UserApi) Login(c *gin.Context) {
 		response.FailWithMessage(err, c)
 		return
 	}
-	//if err := utils.Verify(loginForm, utils.LoginVerify); err != nil {
-	//	response.FailWithMessage(err.Error(), c)
-	//	return
-	//}
-
 	u := &models.User{Username: loginForm.Username, Password: loginForm.Password}
 	if user, err := userService.Login(u); err != nil {
 		global.CASBIN_LOG.Error("login failed! username or password wrong!", zap.Error(err))
@@ -115,4 +110,24 @@ func (ua *UserApi) Register(c *gin.Context) {
 	} else {
 		response.OkWithDetailed(response.RegisterResponse{res}, "register success!", c)
 	}
+}
+
+// GetUserInfo 通过token获取当前用户信息
+func (ua *UserApi) GetUserInfo(c *gin.Context) {
+	var form forms.GetCurUserInfo
+	if err := c.ShouldBind(&form); err != nil {
+		response.FailWithMessage(err, c)
+		return
+	}
+	j := &utils.JWT{SigningKey: []byte(global.CASBIN_CONFIG.JWT.SigningKey)}
+	claims, err := j.ParseToken(form.Token)
+	if err != nil {
+		response.FailWithMessage("用户token校验失败", c)
+	}
+	userID := claims.ID
+	userInfo, err := userService.FindUserById(int(userID))
+	if err != nil {
+		return
+	}
+	response.OkWithData(userInfo, c)
 }

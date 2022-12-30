@@ -1,9 +1,9 @@
 package initialize
 
 import (
+	"context"
 	"easycasbin/models"
 	"easycasbin/service/system"
-	"context"
 	"gorm.io/gorm"
 )
 

@@ -82,7 +82,7 @@ func (UserService *UserService) DeleteUser(id int) (err error) {
 	return err
 }
 
-// FindUserById 通过id 获取用户信息
+// FindUserById 通过id 获取用户信息以及相关权限信息
 func (UserService *UserService) FindUserById(id int) (user *models.User, err error) {
 	var u models.User
 	err = global.CASBIN_DB.Where("`id` = ?", id).First(&u).Error

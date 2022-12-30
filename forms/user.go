@@ -14,6 +14,11 @@ type Login struct {
 	AuthorityId string `json:"authority_id" form:"authorityId"`
 }
 
+// GetCurUserInfo 获取当前登录用户信息
+type GetCurUserInfo struct {
+	Token string `json:"token" form:"token" binding:"required"`
+}
+
 // Modify password structure
 type ChangePasswordReq struct {
 	ID          uint   `json:"-" form:"id"`                    // 从 JWT 中提取 user id，避免越权

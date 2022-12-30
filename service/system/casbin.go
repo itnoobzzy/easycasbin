@@ -29,6 +29,7 @@ func (casbinService *CasbinService) GetRolesForUserInDomain(form *forms.UserInDo
 // GetAllDomains 获取所有域
 func (casbinService *CasbinService) GetAllDomains() (domains []string, err error) {
 	var roleList []models.Role
+	domains = make([]string, 0)
 	if err = global.CASBIN_DB.Distinct("Domain").Where("deleted_at is null").Find(&roleList).Error; err != nil {
 		return make([]string, 0), errors.New("获取所有域信息失败!")
 	}
@@ -42,7 +43,10 @@ func (casbinService *CasbinService) GetAllDomains() (domains []string, err error
 func (casbinService *CasbinService) AddDomain(form *forms.AddDomain) (role models.Role, err error) {
 	role.Domain = form.DomainName
 	role.Name = form.RoleName
-	if err = global.CASBIN_DB.Clauses(clause.OnConflict{DoNothing: true}).Create(&role).Error; err != nil {
+	if err = global.CASBIN_DB.Clauses(clause.OnConflict{
+		Columns:   []clause.Column{{Name: "domain"}, {Name: "name"}},
+		UpdateAll: true,
+	}).Create(&role).Error; err != nil {
 		return models.Role{}, err
 	}
 	return role, nil
